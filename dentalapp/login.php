@@ -23,9 +23,12 @@ $_SESSION["firstname"]=$rows['First_Name'];
       // Redirect user to index.php
 header("Location: home.php");
    }else{
-echo "<div class='form'>
-<h3>Username/password is incorrect.</h3>
-<br/>Click here to <a href='login.php'>Login</a></div>";
+     ?>
+<script>
+alert("Username/password is incorrect");
+window.location.href = "login.php";
+</script>
+<?php
 }
 }else{
 ?>
@@ -37,7 +40,7 @@ echo "<div class='form'>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   
-  <link rel='stylesheet' href='http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css'>
+  <link rel='stylesheet' href='https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css'>
 
       <link rel="stylesheet" href="css/style.css">
 
@@ -55,7 +58,7 @@ echo "<div class='form'>
       <center><h2 class="form-signin-heading">Logo</h2></center>
       <input type="email" class="form-control" name="email" placeholder="Email Address" required="" autofocus=""  />
       <input type="password" class="form-control" name="password" placeholder="Password" required="" />      
-      <input type="submit" name="submit" value="Login"/><br>
+      <input type="submit" class="btn btn-info btn-block" value="Login">
       <a href="register.php">Not a Member? Register Here!</a>   
     </form>
   </div>

@@ -9,6 +9,8 @@ if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
        $_SESSION["firstname"]=$row['First_Name'];
+       $_SESSION["surname"]=$row['Surname'];
+       $_SESSION["id"]=$row['Id'];
     }
 }
 if(!isset($_SESSION["email"])){

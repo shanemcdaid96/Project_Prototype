@@ -11,7 +11,7 @@ include("auth.php");
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   
-  <link rel='stylesheet' href='http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css'>
+  <link rel='stylesheet' href='https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css'>
 
       <link rel="stylesheet" href="css/style.css">
 
@@ -29,7 +29,7 @@ include("auth.php");
     <div class="wrapper">
     <form class="form-signin">       
       <center><h2 class="form-signin-heading">Logo</h2></center>     
-      <button class="btn btn-lg btn-primary btn-block" type="button">Book an Appointment</button><br> 
+      <a href="bookappointments.php"><button class="btn btn-lg btn-primary btn-block" type="button">Book an Appointment</button></a><br> 
       <button class="btn btn-lg btn-primary btn-block" type="button">View Bookings</button><br> 
      <a href="services.php"> <button class="btn btn-lg btn-primary btn-block" type="button">View Services</button></a><br> 
       <a href="logout.php"> <button class="btn btn-lg btn-primary btn-block" type="button">Log Out</button></a><br> 
