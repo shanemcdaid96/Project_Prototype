@@ -4,27 +4,6 @@
 require('config.php');
 include("auth.php");
 include("timepicker.php");
-
-if (isset($_POST['submit'])){
-
-    $sql = "SELECT * FROM dentists WHERE Surname='$_POST[dentist]'";
-    $result = mysqli_query($conn, $sql);
-    $row = mysqli_fetch_assoc($result);
-    $dentistID = $row['Dentist_Id'];
-
-    $sql2 = "SELECT * FROM services WHERE service_type='$_POST[services]'";
-      $result = mysqli_query($conn, $sql2);
-      $row1 = mysqli_fetch_assoc($result);
-      $serviceID = $row1['service_id'];
-   
-      $query = "INSERT into `appointment` (appDate, appTime, dentistID, userID,serviceID, paymentMethod)
-       VALUES ('$_POST[datepicker]','$_POST[time]', '$dentistID','$_SESSION[id]','$serviceID','$_POST[payment]')";
-         $result = mysqli_query($conn,$query);
-         if($result){
-           echo '<script src="js/bookingsuccess.js"></script>';
-             }
-       }
-
 ?>
 <head>
         <meta charset="UTF-8">
@@ -46,7 +25,7 @@ if (isset($_POST['submit'])){
   <a href="javascript:history.back(1)"><i class="fa fa-step-backward"></i></a>
 </div>
     <div class="wrapper">
-    <form class="form-signin" action="" method="POST">       
+    <form class="form-signin" action="confirmbooking.php" method="POST">       
       <center><h2 class="form-signin-heading">Logo</h2></center> 
 
      <?php
@@ -63,7 +42,7 @@ if (isset($_POST['submit'])){
              if ($result2->num_rows > 0) {
               // output data of each row
               while($row2 = $result2->fetch_assoc()) {
-                  echo "<option> ". $row2["Surname"] . "</option>";
+                  echo "<option> ". $row2["Full_Title"] . "</option>";
               }
           } else {
               echo "0 results";
@@ -118,7 +97,6 @@ if (isset($_POST['submit'])){
     </form>
   </div>
   ​<div class="footer">
-  <a href="#">Dentist Login</a>
 </div>
 </body>
 </html>

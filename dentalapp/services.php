@@ -57,7 +57,6 @@ include("auth.php");
     </form>
   </div>
   ​<div class="footer">
-  <a href="#">Dentist Login</a>
 </div>
   
   
