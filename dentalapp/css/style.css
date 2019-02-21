@@ -137,4 +137,61 @@ select::-ms-expand {
   -o-transition: .25s all ease;
   transition: .25s all ease;
 }
-        
+.bar {
+  fill: #000;
+}
+
+.bar:hover {
+  fill: slateblue;
+}
+
+.axis-x path {
+  display: none;
+}
+
+.axis text {
+  font-weight: bold;
+}
+
+.age-dropdown {
+  float: right;
+}
+
+.line {
+  stroke: #E4002B;
+  fill: none;
+  stroke-width: 3;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: black;
+  shape-rendering: crispEdges;
+}
+
+.axis text {
+  font-size: 10px;
+  font-family: sans-serif;
+}
+
+.text-label {
+  font-size: 10px;
+  font-family: sans-serif;
+}
+
+.dot {
+  stroke: #293b47;
+  fill: #7A99AC
+}
+.regression {
+  stroke-width: 2px;
+  stroke: red;
+  stroke-dasharray: 10,5;
+}
+.equation {
+  font-size: 12px;
+  margin-top: 10px;
+  text-align: center;
+}
+   
