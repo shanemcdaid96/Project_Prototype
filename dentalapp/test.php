@@ -13,7 +13,7 @@ if (mysqli_connect_errno($conn)) {
 die('Failed to connect to MySQL: '.mysqli_connect_error());
 }
 
-      $query = "SELECT * FROM denture_repairs";
+      $query = "SELECT * FROM dataset WHERE statistic='Denture Repairs (Number)'";
       $result = mysqli_query($conn, $query);
       $rows = mysqli_num_rows($result);
       
