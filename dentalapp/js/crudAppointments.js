@@ -3,7 +3,7 @@ $(document).ready(function(){
           $('#insert').val("Insert");  
           $('#insert_form')[0].reset();  
      });  
-     $(document).on('click', '.edit_data', function(){  
+    $(document).on('click', '.edit_data', function(){  
           var app_ID = $(this).attr("id"); 
         //  console.log(app_ID); 
           $.ajax({  
@@ -19,10 +19,10 @@ $(document).ready(function(){
                     $('#datepicker').val(data.appDate);  
                     $('#app_ID').val(data.app_ID);  
                     $('#insert').val("Update");  
-                    $('#add_data_Modal').modal('show');  
+                    $('#edit_data_Modal').modal('show');  
                }  
           });  
-     });  
+     }); 
      $('#insert_form').on("submit", function(event){  
           event.preventDefault();  
           if($('#dentist').val() == "")  
@@ -91,7 +91,6 @@ $(document).ready(function(){
              alert('Something is wrong');
           },
           success: function(data) {
-            //   $("#"+app_ID).remove();
             $ele.fadeOut().remove();
             console.log('Appointment Deleted');
    
@@ -105,3 +104,23 @@ $(document).ready(function(){
 
    
 }); 
+function GetUserDetails(id) {
+     // Add User ID to the hidden field for furture usage
+     $("#app_ID").val(id);
+     $.post("ajax/readUserDetails.php", {
+             id: id
+         },
+         function (data, status) {
+             // PARSE json data
+             var user = JSON.parse(data);
+             // Assing existing values to the modal popup fields
+             $('#dentist').val(data.Full_Title);  
+             $('#services').val(data.service_type);  
+             $('#payment').val(data.paymentMethod);  
+             $('#time').val(data.appTime);  
+             $('#datepicker').val(data.appDate); 
+         }
+     );
+     // Open modal popup
+     $("#edit_user_modal").modal("show");
+ }

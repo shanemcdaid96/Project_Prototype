@@ -1,17 +1,12 @@
-var margin = {top: 60, right: 60, bottom: 100, left: 100},
-width = 700 - margin.left - margin.right,
-height = 700 - margin.top - margin.bottom;
-
-var svg = d3.select("#chart").append("svg")
-    .classed("svg-container", true)
-  .attr("width", width + margin.left + margin.right)
-  .attr("height", height + margin.top + margin.bottom)
-.append("g")
-  .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-  .attr("preserveAspectRatio", "xMinYMin meet")
-  .attr("viewBox", "0 0 600 400")
-//  class to make it responsive
- .classed("svg-content-responsive", true); 
+var	margin = {top: 30, right: 20, bottom: 30, left: 50},
+	width = 400 - margin.left - margin.right,
+	height = 220 - margin.top - margin.bottom;
+var svg = d3.select("#chart")
+    	.append("svg")
+		.attr("width", width + margin.left + margin.right)
+		.attr("height", height + margin.top + margin.bottom)
+	.append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 var x = d3.scaleLinear()
   .range([0,width]);
@@ -25,13 +20,15 @@ var xAxis = d3.axisBottom()
 var yAxis = d3.axisLeft()
   .scale(y);
 
-d3.csv("../dentist/data2.csv", types, function(error, data){
+//d3.csv("../dentist/data.csv",types,function(error, data){
+d3.json("../dentist/trend1.php",function(error,data){
+console.log(data);
+y.domain(d3.extent(data, function(d){ return d.value=+d.value}));
+x.domain(d3.extent(data, function(d){ return d.age=+d.age}));
 
-y.domain(d3.extent(data, function(d){ return d.value}));
-x.domain(d3.extent(data, function(d){ return d.age}));
 
 // see below for an explanation of the calcLinear function
-  var lg = calcLinear(data, "age", "value", d3.min(data, function(d){ return d.value}), d3.min(data, function(d){ return d.value}));
+  var lg = calcLinear(data, "age", "value", d3.min(data, function(d){ return d.age}), d3.min(data, function(d){ return d.value}));
   
       // chart title
       svg.append("text")
@@ -40,7 +37,7 @@ x.domain(d3.extent(data, function(d){ return d.age}));
       .attr("text-anchor", "middle")  
       .style("font-size", "16px") 
       .style("text-decoration", "underline")  
-      .text("White Composite Fillings 2013-2016");
+      .text("Amalgam Fillings 2013-2016");
 
 svg.append("line")
     .attr("class", "regression")
@@ -75,6 +72,166 @@ svg.append("g")
   .text("Value"); 
 
 svg.selectAll(".point")
+    .data(data)
+  .enter().append("circle")
+    .attr("class", "point")
+    .attr("r", 3)
+    .attr("cy", function(d){ return y(d.value); })
+    .attr("cx", function(d){ return x(d.age); });
+
+});
+
+var svg2 = d3.select("#chart")
+    	.append("svg")
+		.attr("width", width + margin.left + margin.right)
+		.attr("height", height + margin.top + margin.bottom)
+	.append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+var x = d3.scaleLinear()
+  .range([0,width]);
+
+var y = d3.scaleLinear()
+  .range([height,0]);
+
+var xAxis = d3.axisBottom()
+  .scale(x);
+
+var yAxis = d3.axisLeft()
+  .scale(y);
+
+//d3.csv("../dentist/data.csv",types,function(error, data){
+d3.json("../dentist/trend2.php",function(error,data){
+console.log(data);
+y.domain(d3.extent(data, function(d){ return d.value=+d.value}));
+x.domain(d3.extent(data, function(d){ return d.age=+d.age}));
+
+
+// see below for an explanation of the calcLinear function
+  var lg = calcLinear(data, "age", "value", d3.min(data, function(d){ return d.value}), d3.min(data, function(d){ return d.value}));
+  
+      // chart title
+      svg2.append("text")
+      .attr("x", (width / 2))             
+      .attr("y", 0 - (margin.top / 2))
+      .attr("text-anchor", "middle")  
+      .style("font-size", "16px") 
+      .style("text-decoration", "underline")  
+      .text("Denture Repairs 2013-2016");
+
+svg2.append("line")
+    .attr("class", "regression")
+    .attr("x1", x(lg.ptA.x))
+    .attr("y1", y(lg.ptA.y))
+    .attr("x2", x(lg.ptB.x))
+    .attr("y2", y(lg.ptB.y));
+
+svg2.append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0," + height + ")")
+      .call(xAxis)
+      
+  // text label for the x axis
+  svg2.append("text")             
+      .attr("transform",
+            "translate(" + (width/2) + " ," + 
+                           (height + margin.top + 20) + ")")
+      .style("text-anchor", "middle")
+      .text("Age");
+svg2.append("g")
+    .attr("class", "y axis")
+    .call(yAxis);
+
+      // text label for the y axis
+  svg2.append("text")
+  .attr("transform", "rotate(-90)")
+  .attr("y", 0 - margin.left)
+  .attr("x",0 - (height / 2))
+  .attr("dy", "1em")
+  .style("text-anchor", "middle")
+  .text("Value"); 
+
+svg2.selectAll(".point")
+    .data(data)
+  .enter().append("circle")
+    .attr("class", "point")
+    .attr("r", 3)
+    .attr("cy", function(d){ return y(d.value); })
+    .attr("cx", function(d){ return x(d.age); });
+
+});
+
+var svg3 = d3.select("#chart")
+    	.append("svg")
+		.attr("width", width + margin.left + margin.right)
+		.attr("height", height + margin.top + margin.bottom)
+	.append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+var x = d3.scaleLinear()
+  .range([0,width]);
+
+var y = d3.scaleLinear()
+  .range([height,0]);
+
+var xAxis = d3.axisBottom()
+  .scale(x);
+
+var yAxis = d3.axisLeft()
+  .scale(y);
+
+//d3.csv("../dentist/data.csv",types,function(error, data){
+d3.json("../dentist/trend3.php",function(error,data){
+console.log(data);
+y.domain(d3.extent(data, function(d){ return d.value=+d.value}));
+x.domain(d3.extent(data, function(d){ return d.age=+d.age}));
+
+
+// see below for an explanation of the calcLinear function
+  var lg = calcLinear(data, "age", "value", d3.min(data, function(d){ return d.value}), d3.min(data, function(d){ return d.value}));
+  
+      // chart title
+      svg3.append("text")
+      .attr("x", (width / 2))             
+      .attr("y", 0 - (margin.top / 2))
+      .attr("text-anchor", "middle")  
+      .style("font-size", "16px") 
+      .style("text-decoration", "underline")  
+      .text("Denture Repairs 2013-2016");
+
+svg3.append("line")
+    .attr("class", "regression")
+    .attr("x1", x(lg.ptA.x))
+    .attr("y1", y(lg.ptA.y))
+    .attr("x2", x(lg.ptB.x))
+    .attr("y2", y(lg.ptB.y));
+
+svg3.append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0," + height + ")")
+      .call(xAxis)
+      
+  // text label for the x axis
+  svg3.append("text")             
+      .attr("transform",
+            "translate(" + (width/2) + " ," + 
+                           (height + margin.top + 20) + ")")
+      .style("text-anchor", "middle")
+      .text("Age");
+svg3.append("g")
+    .attr("class", "y axis")
+    .call(yAxis);
+
+      // text label for the y axis
+  svg3.append("text")
+  .attr("transform", "rotate(-90)")
+  .attr("y", 0 - margin.left)
+  .attr("x",0 - (height / 2))
+  .attr("dy", "1em")
+  .style("text-anchor", "middle")
+  .text("Value"); 
+
+svg3.selectAll(".point")
     .data(data)
   .enter().append("circle")
     .attr("class", "point")

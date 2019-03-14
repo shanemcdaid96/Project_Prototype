@@ -47,8 +47,8 @@ $result = mysqli_query($conn, $query);
 </div>
 <!-- /#sidebar-wrapper -->
     <div class="wrapper">
-    <form class="form-signin" action="confirmbooking.php" method="POST">       
-      <center><h2 class="form-signin-heading">Logo</h2></center> 
+    <form class="form-signin" action="" method="POST">       
+      <center><h2 class="form-signin-heading"><img src="logo.png" width="150" height="150"></h2></center> 
       <div class="table-responsive">  
                      <div align="right">  
                           <button type="button" name="add" id="add" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-success">Add Appointment</button>  
@@ -169,7 +169,7 @@ $result = mysqli_query($conn, $query);
              //Date
              echo "<label>Date: </label><br>";?>
 
-          <script src="js/datepicker.js"></script>
+        
                 <input type="text" class="form-control" name="datepicker" id="datepicker" required readonly><br>
              <input type="hidden" name="app_ID" id="app_ID" />  
                           <input type="submit" name="insert" id="insert" value="Insert" class="btn btn-success btn-block"  />  
@@ -181,6 +181,87 @@ $result = mysqli_query($conn, $query);
            </div>  
       </div>  
  </div>  
+ <div id="edit_data_Modal" class="modal fade">  
+      <div class="modal-dialog">  
+           <div class="modal-content">  
+                <div class="modal-header">  
+                     <button type="button" class="close" data-dismiss="modal">&times;</button>  
+                     <h4 class="modal-title">Edit Appointment Information</h4>  
+                </div>  
+                <div class="modal-body">  
+                     <form method="post" id="insert_form">  
+                          <label>Name:</label>  
+                          <?php
+                          echo "<input type='text' class='form-control' name='name' value=' ". $_SESSION["firstname"]. " " . $_SESSION["surname"] . "' readonly><br>"; ?>
+                          <br />  
+                          <?php
+                                       //Dentist
+                            $sql2 = "SELECT * FROM dentists";
+                            $result2 = $conn->query($sql2);
+                            echo "<label>Dentist:</label>"; 
+                            echo "<div class='select'>";
+                            echo "<select name='dentist' id='dentist'>";
+                            if ($result2->num_rows > 0) {
+                            // output data of each row
+                            while($row2 = $result2->fetch_assoc()) {
+                            echo "<option> ". $row2["Full_Title"] . "</option>";
+                            }
+                            } else {
+                            echo "0 results";
+                            }
+                            echo "</select>";
+                            echo "</div><br>";
+                            //Appointment
+                            echo "<label>Appointment Type</label>";
+                            $sql3 = "SELECT * FROM services";
+                            $result3 = $conn->query($sql3);
+                            echo "<div class='select'>";
+
+                            if ($result3->num_rows > 0) {
+                            // output data of each row
+                            echo "<select name='services' id='services' class='services'>";
+                            while($row3 = $result3->fetch_assoc()) {
+                            echo "<option  data-price='".$row3["price"]."'>". $row3["service_type"]. "</option>";
+
+                            }
+                            } else {
+                            echo "0 results";
+                            }
+                            echo "</select>";
+                            echo "</div><br>";
+                                   //Price
+              echo "<label>Price:</label>";
+              echo "<span class='price'></span><br>";
+              ?>
+                <script src="js/services.js"> </script>
+              <?php
+             //Payment Method       
+             echo "<label>Payment Method </label>";
+             echo "<div class='select'>";
+             echo "<select name='payment' id='payment'><option value='cash'>Cash</option>";
+             echo "<option value='hse'>HSE Medical Card</option>";
+             echo "<option value='card'>Credit/Debit Card</option></select></div><br>";
+  
+             //Time
+             echo "<label>Time: </label>";
+       
+            echo "<select name='time' id='time' class='select'> " .get_times(). "</select><br>";
+             //Date
+             echo "<label>Date: </label><br>";?>
+
+                <input type="text" class="form-control" name="datepicker" id="datepicker" required><br>
+             <input type="hidden" name="app_ID" id="app_ID" />  
+                       <!--   <input type="submit" name="insert" id="insert" value="Insert" class="btn btn-success btn-block"  />-->
+                       <button type="button" class="btn btn-primary" onclick="UpdateUserDetails()" >Save Changes</button>  
+                     </form>  
+                </div>  
+                <div class="modal-footer">  
+                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>  
+                </div>  
+           </div>  
+      </div>  
+ </div>  
+ <script src="js/datepicker.js"></script>
  <script src="js/crudAppointments.js"> </script>
  <script type="text/javascript" src="js/menutoggle.js"></script>
  
