@@ -48,7 +48,7 @@ include("auth.php");
 
     <div class="wrapper">
     <form class="form-signin">       
-      <center><h2 class="form-signin-heading">Logo</h2></center> 
+      <center><h2 class="form-signin-heading"><img src="logo.png" width="150" height="150"></h2></center> 
       <table class="table">
     <thead>
       <tr>

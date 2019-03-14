@@ -31,7 +31,7 @@ require("../config.php");
 </div>     
       <center><h2 class="form-signin-heading">Current Trends</h2></center>   
   <div class="wrapper">
-  <div id="chart" class="svg-container"></div><br>
+ <div id="chart"></div><br>
     <form class="form-signin" action="confirmtrend.php" method="POST"> 
     <label for="comment">Create New Trend Alert: </label>
       <textarea name="message" class="form-control" rows="5" id="comment" required></textarea><br>
