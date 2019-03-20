@@ -2,7 +2,7 @@
   require('dbtrends.php');
 
     $myquery = "
-    SELECT * FROM recent_trends WHERE treatment = 'Surgical Extraction'";
+    SELECT * FROM fees WHERE treatment LIKE '%Composite%' OR treatment LIKE '%Amalgam%'";
     $query = mysqli_query($conn,$myquery);
 
     if ( ! $query ) {

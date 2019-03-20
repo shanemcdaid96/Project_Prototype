@@ -1,7 +1,7 @@
 <?php
 // include Database connection file
 include("config.php");
-include("./auth.php")
+include("../auth.php");
 
 // check request
 if(isset($_POST))
@@ -22,17 +22,28 @@ if(isset($_POST))
 		$appDate = $_POST['appDate'];
         $payment = $_POST['payment'];
         $id = $_POST['id'];
+
+        		  //Check for Double Booking
+		  $bookingcheck="SELECT * FROM appointment WHERE dentistID='$dentistID' AND appDate='$appDate' AND appTime='$appTime'";
+          $resultCheck = $conn->query($bookingcheck);   
+          if ($resultCheck->num_rows > 0) {
+            // output data of each row
+            while($rowCheck = $resultCheck->fetch_assoc()) {
+                echo '<script src="../js/doublebooking.js"></script>';
+            }
+       }else{
     // Update User details
            $query = "  
            UPDATE appointment   
            SET appDate='$appDate',   
            appTime='$appTime',   
            dentistID='$dentistID',   
-           userID = 12,   
+           userID = '$_SESSION[id]',   
            serviceID = '$serviceID',
            paymentMethod = '$payment'   
            WHERE app_ID='$id'";  
     if (!$result = mysqli_query($conn,$query)) {
         exit(mysqli_error());
     }
+  }
 }

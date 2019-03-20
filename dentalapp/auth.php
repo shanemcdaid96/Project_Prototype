@@ -15,6 +15,6 @@ if ($result->num_rows > 0) {
     }
 }
 if(!isset($_SESSION["email"])){
-header("Location: login.php");
+header("Location: index.php");
 exit(); }
 ?>

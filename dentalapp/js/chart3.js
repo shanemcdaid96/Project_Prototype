@@ -1,7 +1,7 @@
 var	margin = {top: 30, right: 20, bottom: 60, left: 60},
 	width = 500 - margin.left - margin.right,
 	height = 320 - margin.top - margin.bottom;
-var svg = d3.select("#chart")
+var svg3 = d3.select("#chart")
     	.append("svg")
 		.attr("width", width + margin.left + margin.right)
 		.attr("height", height + margin.top + margin.bottom)
@@ -20,50 +20,49 @@ var xAxis = d3.axisBottom()
 var yAxis = d3.axisLeft()
   .scale(y);
 
-  
-
-d3.json("../dentist/trend1.php",function(error,data){
+//d3.csv("../dentist/data.csv",types,function(error, data){
+d3.json("../dentist/trend3.php",function(error,data){
 y.domain(d3.extent(data, function(d){ return d.value=+d.value}));
 x.domain(d3.extent(data, function(d){ return d.age=+d.age}));
 
 
 // see below for an explanation of the calcLinear function
   var lg = calcLinear(data, "age", "value", d3.min(data, function(d){ return d.age}), d3.min(data, function(d){ return d.value}));
-
+  
       // chart title
-      svg.append("text")
+      svg3.append("text")
       .attr("x", (width / 2))             
       .attr("y", 0 - (margin.top / 2))
       .attr("text-anchor", "middle")  
       .style("font-size", "16px") 
       .style("text-decoration", "underline")  
-      .text("Amalgam Fillings 2013-2016");
+      .text("Surgical Extraction 2013-2016");
 
-svg.append("line")
+svg3.append("line")
     .attr("class", "regression")
     .attr("x1", x(lg.ptA.x))
     .attr("y1", y(lg.ptA.y))
     .attr("x2", x(lg.ptB.x))
     .attr("y2", y(lg.ptB.y));
 
-svg.append("g")
+svg3.append("g")
     .attr("class", "x axis")
     .attr("transform", "translate(0," + height + ")")
       .call(xAxis)
       
   // text label for the x axis
-  svg.append("text")             
+  svg3.append("text")             
       .attr("transform",
             "translate(" + (width/2) + " ," + 
                            (height + margin.top + 20) + ")")
       .style("text-anchor", "middle")
       .text("Age");
-svg.append("g")
+svg3.append("g")
     .attr("class", "y axis")
     .call(yAxis);
 
       // text label for the y axis
-  svg.append("text")
+  svg3.append("text")
   .attr("transform", "rotate(-90)")
   .attr("y", 0 - margin.left)
   .attr("x",0 - (height / 2))
@@ -71,32 +70,32 @@ svg.append("g")
   .style("text-anchor", "middle")
   .text("Value"); 
 
-                // Add the tooltip container to the vis container
-              // it's invisible and its position/contents are defined during mouseover
-              var tooltip = d3.select("#chart").append("div")
-                  .attr("class", "tooltip")
-                  .style("opacity", 0);
+  // Add the tooltip container to the vis container
+  // it's invisible and its position/contents are defined during mouseover
+  var tooltip = d3.select("#chart").append("div")
+      .attr("class", "tooltip")
+      .style("opacity", 0);
 
-              // tooltip mouseover event handler
-              var tipMouseover = function(d) {
-                  var html  = "<p>Value: "+d.value+", Age: "+d.age+"</p>";
+  // tooltip mouseover event handler
+  var tipMouseover = function(d) {
+      var html  = "<p>Value: "+d.value+", Age: "+d.age+"</p>";
 
-                  tooltip.html(html)
-                      .style("left", (d3.event.pageX + 15) + "px")
-                      .style("top", (d3.event.pageY - 28) + "px")
-                    .transition()
-                      .duration(200) // ms
-                      .style("opacity", .9) // started as 0!
+      tooltip.html(html)
+          .style("left", (d3.event.pageX + 15) + "px")
+          .style("top", (d3.event.pageY - 28) + "px")
+        .transition()
+          .duration(200) // ms
+          .style("opacity", .9) // started as 0!
 
-              };
-              // tooltip mouseout event handler
-              var tipMouseout = function(d) {
-                  tooltip.transition()
-                      .duration(300) // ms
-                      .style("opacity", 0); // don't care about position!
-              };
+  };
+  // tooltip mouseout event handler
+  var tipMouseout = function(d) {
+      tooltip.transition()
+          .duration(300) // ms
+          .style("opacity", 0); // don't care about position!
+  };
 
-svg.selectAll(".point")
+svg3.selectAll(".point")
     .data(data)
   .enter().append("circle")
     .attr("class", "point")
@@ -105,8 +104,6 @@ svg.selectAll(".point")
     .attr("cx", function(d){ return x(d.age); })
     .on("mouseover", tipMouseover)
     .on("mouseout", tipMouseout);
-
-
 
 });
 
