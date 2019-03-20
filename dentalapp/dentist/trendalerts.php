@@ -27,11 +27,30 @@ require("../config.php");
 	<div class="icon-bar">
   <a href="home.php"><i class="fa fa-home"></i></a> 
   <a href="trendalerts.php"><i class="fa fa-refresh"></i></a> 
+  <a href="javascript:history.back(1)"><i class="fa fa-step-backward"></i></a>
+  <a href="#"><i class=""></i></a> 
+  <a href="#menu-toggle" id="menu-toggle"><i class="fa fa-wrench"></i></a> 
 
 </div>     
-      <center><h2 class="form-signin-heading">Current Trends</h2></center>   
+<div id="wrapper" class="toggled">
+
+<!-- Sidebar -->
+<div id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+    <h4>Settings</h4>
+        <li>
+            <a href="#">Change User Password</a>
+        </li>
+        <li>
+            <a href="#">Log Out</a>
+        </li>
+    </ul>
+</div>
   <div class="wrapper">
+  <form class="form-signin">       
+      <center><h2 class="form-signin-heading"><img src="../logo.png" width="150" height="150"></h2></center> 
  <div id="chart"></div><br>
+</form><br>
     <form class="form-signin" action="confirmtrend.php" method="POST"> 
     <label for="comment">Create New Trend Alert: </label>
       <textarea name="message" class="form-control" rows="5" id="comment" required></textarea><br>
@@ -68,6 +87,9 @@ require("../config.php");
 </div>
 </body>
 <script src="../js/chart.js"></script>
+<script src="../js/chart2.js"></script>
+<script src="../js/chart3.js"></script>
 <script src="../js/agerange.js"></script>
+<script type="text/javascript" src="../js/menutoggle.js"></script>
 
 </html>

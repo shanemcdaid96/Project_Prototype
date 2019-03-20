@@ -23,8 +23,7 @@ function addRecord() {
     } 
     else{
     // get values
-   // var first_name = $("#first_name").val();
-   var user_id=12;
+    var user_id = $("#user_ID").val();
     var dentist_id = $("#dentist").val();
     var service_id = $("#services").val();
     var appTime = $("#time").val();
@@ -151,3 +150,61 @@ $(document).ready(function () {
     // READ recods on page load
     readRecords(); // calling function
 });
+
+$(document).ready(function(){
+    $('#datepicker,#dentist,#time').on('change', function() {
+        console.log('Date Changed');
+        var dentist = $("#dentist").val();
+        var appTime = $("#time").val();
+        var appDate = $("#datepicker").val();
+        //ajax request
+       $.ajax({
+            url: "booking_check.php",
+            data: {
+                appDate : appDate,
+                appTime : appTime,
+                dentist : dentist
+            },
+            dataType: 'json',
+            success:function(data) {
+                if(data > 0) {
+                    alert('Time,Date and Dentist is booked for this time - Choose an alternative Time,Date and Dentist');
+                }
+                else {
+                }
+            },
+            error: function(data){
+                //error
+            }
+        });
+    });
+    });
+
+    $(document).ready(function(){
+        $('#updatedatepicker,#update_dentist,#update_time').on('change', function() {
+            console.log('Date Changed');
+            var dentist = $("#update_dentist").val();
+            var appTime = $("#update_time").val();
+            var appDate = $("#updatedatepicker").val();
+            //ajax request
+           $.ajax({
+                url: "booking_check.php",
+                data: {
+                    appDate : appDate,
+                    appTime : appTime,
+                    dentist : dentist
+                },
+                dataType: 'json',
+                success:function(data) {
+                    if(data > 0) {
+                        alert('Time,Date and Dentist is booked for this time - Choose an alternative Time,Date and Dentist');
+                    }
+                    else {
+                    }
+                },
+                error: function(data){
+                    //error
+                }
+            });
+        });
+        });

@@ -1,0 +1,83 @@
+treatment,price,practice
+Examination,45,errigal
+Standard Scale & Polish,45,errigal
+Examination & Cleaning,80,errigal
+Small X-Ray,10,errigal
+Large X-Ray,40,errigal
+Amalgam (Metal) Fillings,85,errigal
+Composite (White) Fllings,100,errigal
+Fissure Sealant,25,errigal
+Surgical Extraction of Impacted Wisdom Tooth,245,errigal
+Comprehensive Scale & Polish,55,errigal
+Advanced Gum/ Periodontal treatments,75,errigal
+Nite White Home Whitening,299,errigal
+Power Whitening,495,errigal
+Acrylic Dentures,450,errigal
+Chrome Cobalt Denture,850,errigal
+Crowns: Metal/Ceramic,595,errigal
+Crowns: Reinforced All Ceramic,675,errigal
+Ceramic Inlay/Onlay,525,errigal
+Ceramic/porcelain Veneer,525,errigal
+"Fully Fitted including abutment, screwa and PFM Crown",2500,errigal
+Hard Acrylic Night Splint,225,errigal
+Combination hard/Sport night splint,150,errigal
+Sports guard/Gum shield,75,errigal
+Clear Orthodontic Retainer (essix),125,errigal
+Exam,35,errigal
+Exam & Cleaning,60,errigal
+Extraction of deciduous tooth,65,errigal
+Filling deciduous tooth,60,errigal
+Examination,35,foxdental
+Peridontal treatment (w/Hygienist per 30mins) ,50,foxdental
+Scale & Polish (w/Hygienist per 20mins),40,foxdental
+Scale & Polish (w/Dr Fox),30,foxdental
+White Filling ,85,foxdental
+Amalgam Filling (Silver),70,foxdental
+Extraction,50,foxdental
+Surgical Extraction,90,foxdental
+Check Visits/ Stitch Removal ,0,foxdental
+Full Upper & Full Lower Denture,550,foxdental
+Full Upper OR Full Lower Denture,300,foxdental
+Partial Denture,300,foxdental
+Chrome Denture,600,foxdental
+Reline of Denture,140,foxdental
+Denture Repair,60,foxdental
+Incisor tooth(123),220,foxdental
+Premolar tooth (45),270,foxdental
+Molar tooth (678),430,foxdental
+Bonded Crown,400,foxdental
+Veneer,300,foxdental
+Post for Crown,120,foxdental
+Re-Cement of Crown,35,foxdental
+Temp. Crown,60,foxdental
+Mouth Guard,120,foxdental
+Bleaching,300,foxdental
+Internal Bleaching (per tooth),130,foxdental
+Bleaching tubes,40,foxdental
+Examination,25,station_house
+Examination and 2 x-rays,35,station_house
+Additional x-rays,10,station_house
+Issue of prescription,10,station_house
+Amalgam,60,station_house
+White composite,700,station_house
+Minimal preparation repairs,35,station_house
+Extraction,50,station_house
+Surgical tooth removal,80,station_house
+ Root  Canal - Incisors (front tooth),185,station_house
+Root Canal - premolars (side tooth),205,station_house
+Root Canal - molars (back tooth),400,station_house
+Full upper or lower acrylic (plastic) dentures,315,station_house
+Full upper and lower acrylic (plastic) dentures,485,station_house
+Upper or lower partial acrylic (plastic) denture,200,station_house
+Cobalt Chrome denture (light metal) upper or lower,600,station_house
+All Zirconia (non-metal) for back teeth,400,station_house
+Porcelain bonded to metal (for any tooth),450,station_house
+Multi-layered Zirconia crown (most natural),550,station_house
+Custom made cast post and core,100,station_house
+Maryland bridge from,450,station_house
+conventional bridge from,800,station_house
+Veneers,450,station_house
+Home Bleaching,290,station_house
+Evolution Bleaching,700,station_house
+Acrylic bite Guard from,120,station_house
+Sports Guard from,90,station_house

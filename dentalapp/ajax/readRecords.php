@@ -1,6 +1,8 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">  
 <?php
 	// include Database connection file 
 	include("config.php");
+	include("../auth.php");
 
 	// Design initial table header 
 	$data = '<table class="table table-bordered table-striped">
@@ -13,7 +15,7 @@
 							<th>Delete</th>
 						</tr>';
 
-	$query = "SELECT * FROM appointment";
+	$query = "SELECT * FROM appointment WHERE userID ='$_SESSION[id]'";
 
 	if (!$result = mysqli_query($conn,$query)) {
         exit(mysqli_error());
@@ -44,7 +46,7 @@
     else
     {
     	// records now found 
-    	$data .= '<tr><td colspan="6">Records not found!</td></tr>';
+    	$data .= '<tr><td colspan="6">User currently has no appointments!</td></tr>';
     }
 
     $data .= '</table>';

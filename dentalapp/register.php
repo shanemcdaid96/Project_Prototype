@@ -27,6 +27,12 @@ if ($result2->num_rows > 0) {
   $dob = date($_REQUEST['dob']);
   $password = stripslashes($_REQUEST['password']);
   $password = mysqli_real_escape_string($conn,$password);
+  $phone = stripslashes($_REQUEST['phone']);
+  $phone = mysqli_real_escape_string($conn,$phone);
+  $sex = stripslashes($_REQUEST['sex']);
+  $sex = mysqli_real_escape_string($conn,$sex);
+  $pps = stripslashes($_REQUEST['pps']);
+  $pps = mysqli_real_escape_string($conn,$pps);
   $confirmpassword = stripslashes($_REQUEST['confirmpassword']);
   $confirmpassword = mysqli_real_escape_string($conn,$confirmpassword);
 
@@ -42,12 +48,12 @@ if ($result2->num_rows > 0) {
    }
    else{
 
-  $query = "INSERT into `patients` (First_Name, Surname, Email_Address, Password, DOB)
-VALUES ('$firstname','$surname','$email','".md5($password)."','$dob')";
+  $query = "INSERT into `patients` (First_Name, Surname, Email_Address, Password, DOB, Sex, Phone_Number, PPS_Number)
+VALUES ('$firstname','$surname','$email','".md5($password)."','$dob','$sex','$phone','$pps')";
   $result = mysqli_query($conn,$query);
   if($result){
     echo '<script> alert("Registration Successful");';
-    echo 'window.location.href = "register.php";';
+    echo 'window.location.href = "index.php";';
     echo '</script>';
    }
  }
@@ -76,16 +82,39 @@ VALUES ('$firstname','$surname','$email','".md5($password)."','$dob')";
 
     <div class="wrapper">
     <form class="form-signin" action="" method="POST" >       
-      <center><h2 class="form-signin-heading">Logo</h2></center>
-      <input type="text" class="form-control" name="firstname" placeholder="First Name" required=""/>
-      <input type="text" class="form-control" name="surname" placeholder="Surname" required=""/>
-      <input type="email"  class="form-control" name="email" placeholder="Email" required />
+    <center><h2 class="form-signin-heading"><img src="logo.png" width="150" height="150"></h2></center> 
+      <label >First Name:</label>
+      <input type="text" class="form-control" name="firstname" placeholder="First Name" required=""/><br>
+
+      <label >Surname:</label>
+      <input type="text" class="form-control" name="surname" placeholder="Surname" required=""/><br>
+
+      <label >Email Address:</label>
+      <input type="email"  class="form-control" name="email" placeholder="Email" required /><br>
+
+      <label >Phone/Mobile Number:</label>
+      <input type="phone"  class="form-control" name="phone" placeholder="Number" required /><br>
+
+      <label >Sex:</label>
+      <select class="form-control" id="sex" name="sex" requiired>
+        <option>Male</option>
+        <option>Female</option>
+        <option>Other</option>
+      </select><br>
+
+      <label >Date of Birth:</label>
       <input type="date" class="form-control" name="dob" placeholder="Date of Birth" required=""/><br>
 
-      <input type="password" class="form-control" name="password" placeholder="Password" required=""/> 
-      <input type="password" class="form-control" name="confirmpassword" placeholder="Confirm Password" required=""/>      
+      <label >PPS Number (Optional):</label>
+      <input type="text"  class="form-control" name="pps" placeholder="PPS Number" /><br>
+
+      <label >Password:</label>
+      <input type="password" class="form-control" name="password" placeholder="Password" required=""/><br> 
+
+      <label >Confirm Password:</label>
+      <input type="password" class="form-control" name="confirmpassword" placeholder="Confirm Password" required=""/><br>      
       <input type="submit" class="btn btn-info btn-block" value="Sign Up"><br>
-      <a href="login.php">Already a Member? Login Here!</a>   
+      <a href="index.php">Already a Member? Login Here!</a>   
     </form>
   </div>
   ​<div class="footer">

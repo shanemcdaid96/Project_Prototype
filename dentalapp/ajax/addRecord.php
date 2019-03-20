@@ -3,7 +3,6 @@
 	{
 		// include Database connection file 
 		include("config.php");
-		include("./auth.php")
 
 		   //Get Dentist ID
 		   $sql = "SELECT * FROM dentists WHERE Full_Title='$_POST[dentist_id]'";
@@ -30,7 +29,7 @@
 			  if ($resultCheck->num_rows > 0) {
 				// output data of each row
 				while($rowCheck = $resultCheck->fetch_assoc()) {
-					echo '<script>console.log("Double Booking");</script>';
+					echo '<script src="../js/doublebooking.js"></script>';
 				}
 		   }else{
 		     $query = " INSERT INTO appointment(appDate, appTime, dentistID, userID, serviceID, paymentMethod)  

@@ -24,6 +24,10 @@
                      <td width="70%">'.$row["service_type"].'</td>  
                 </tr>  
                 <tr>  
+                <td width="30%"><label>Fee</label></td>  
+                <td width="70%">€'.$row["price"].'</td>  
+           </tr> 
+                <tr>  
                      <td width="30%"><label>Dentist</label></td>  
                      <td width="70%">'.$row["Full_Title"].'</td>  
                 </tr>  
