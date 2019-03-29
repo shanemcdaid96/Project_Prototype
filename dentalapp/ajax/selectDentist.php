@@ -1,20 +1,20 @@
- <?php  
+<?php  
   require('config.php');
  if(isset($_POST["id"]))  
  {        
       $output = '';   
-   //   $query = "SELECT * FROM appointment a, services s, dentists d WHERE a.serviceID=s.service_id AND a.dentistID=d.Dentist_Id AND a.app_ID = '".$_POST["id"]."'";  
-     // $result = mysqli_query($conn, $query);  
-     $stmt= $conn->prepare($query = "SELECT appTime,appDate,service_type,price,Full_Title,paymentMethod FROM appointment a, services s, dentists d WHERE a.serviceID=s.service_id AND a.dentistID=d.Dentist_Id AND a.app_ID=?");
-     $stmt->bind_param("i", $id);
-     $id = $_POST["id"];
-     $stmt->execute();
-     $stmt->bind_result($appTime,$appDate,$service_type,$price,$Full_Title,$paymentMethod);
+    //  $query = "SELECT * FROM appointment a, services s, patients p WHERE a.serviceID=s.service_id AND a.userID=p.Id AND a.app_ID = '".$_POST["id"]."'";  
+    //  $result = mysqli_query($conn, $query);  
+    $stmt= $conn->prepare($query = "SELECT appTime,appDate,service_type,price,First_Name,Surname,paymentMethod FROM appointment a, services s, patients p WHERE a.serviceID=s.service_id AND a.userID=p.Id AND a.app_ID=?");
+    $stmt->bind_param("i", $id);
+    $id = $_POST["id"];
+    $stmt->execute();
+    $stmt->bind_result($appTime,$appDate,$service_type,$price,$First_Name,$Surname,$paymentMethod);
       $output .= '  
       <div class="table-responsive">  
-           <table class="table table-bordered">';
-           while($stmt->fetch())  
-      //while($row = mysqli_fetch_array($result))  
+           <table class="table table-bordered">';  
+    //  while($row = mysqli_fetch_array($result))  
+       while($stmt->fetch())  
       {  
            $output .= '  
                 <tr>  
@@ -34,8 +34,8 @@
                 <td width="70%">€'.$price.'</td>  
            </tr> 
                 <tr>  
-                     <td width="30%"><label>Dentist</label></td>  
-                     <td width="70%">'.$Full_Title.'</td>  
+                     <td width="30%"><label>Patient</label></td>  
+                     <td width="70%">'.$First_Name.' '.$Surname. '</td>  
                 </tr>  
                 <tr>  
                      <td width="30%"><label>Payment</label></td>  

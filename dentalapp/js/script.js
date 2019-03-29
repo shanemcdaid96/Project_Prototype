@@ -117,7 +117,7 @@ function viewUserDetails(id){
 function UpdateUserDetails() {
     // get values
     var dentist_id = $("#update_dentist").val();
-    var service_id = $("#update_services").val();
+    var service = $("#update_services").val();
     var appTime = $("#update_time").val();
     var appDate = $("#updatedatepicker").val();
     var payment = $("#update_payment").val();
@@ -132,7 +132,7 @@ function UpdateUserDetails() {
     $.post("ajax/updateUserDetails.php", {
             id: id,
             dentist_id: dentist_id,
-            service_id: service_id,
+            service: service,
             appTime: appTime,
             appDate:appDate,
             payment: payment

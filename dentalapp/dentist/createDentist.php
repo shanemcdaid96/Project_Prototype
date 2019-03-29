@@ -69,7 +69,7 @@ VALUES ('$name','$email','".md5($password)."')";
 <body>
 	<div class="icon-bar">
   <a href="home.php"><i class="fa fa-home"></i></a> 
-  <a href="changeDentist.php"><i class="fa fa-refresh"></i></a> 
+  <a href="createDentist.php"><i class="fa fa-refresh"></i></a> 
   <a href="javascript:history.back(1)"><i class="fa fa-step-backward"></i></a>
 </div>
 

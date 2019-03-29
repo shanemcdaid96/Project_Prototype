@@ -9,13 +9,20 @@ if(isset($_POST['id']) && isset($_POST['id']) != "")
     $id = $_POST['id'];
 
     // Get User Details
-    $query = "SELECT * FROM appointment a , dentists d, services s WHERE a.app_ID = '$id' AND a.dentistID=d.Dentist_Id AND a.serviceID=s.service_id";
-    if (!$result = mysqli_query($conn,$query)) {
-        exit(mysqli_error());
-    }
+   // $query = "SELECT * FROM appointment a , dentists d, services s WHERE a.app_ID = '$id' AND a.dentistID=d.Dentist_Id AND a.serviceID=s.service_id";
+  //  if (!$result = mysqli_query($conn,$query)) {
+       // exit(mysqli_error());
+   // }
+   $stmt= $conn->prepare($query = "SELECT * FROM appointment a , dentists d, services s WHERE a.app_ID =? AND a.dentistID=d.Dentist_Id AND a.serviceID=s.service_id");
+   $stmt->bind_param("i", $id);
+   $id = $_POST["id"];
+   $stmt->execute();
+  $result=$stmt->get_result();
     $response = array();
-    if(mysqli_num_rows($result) > 0) {
-        while ($row = mysqli_fetch_assoc($result)) {
+    if($result->num_rows>0){
+ //   if(mysqli_num_rows($result) > 0) {
+       while($row=$result->fetch_assoc()){
+     //   while ($row = mysqli_fetch_assoc($result)) {
             $response = $row;
         }
     }

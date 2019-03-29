@@ -2,7 +2,7 @@
 <html lang="en" >
 <?php
 require('../config.php');
-//include("auth.php");
+include("authDentist.php");
 ?>
 
 <head>
@@ -26,7 +26,7 @@ require('../config.php');
   <a href="#menu-toggle" id="menu-toggle"><i class="fa fa-wrench"></i></a> 
 </div>
 <div class="name-bar">
-<h4>Logged In As: <?php  ?></h4>
+<h4>Logged In As: <?php echo $_SESSION['name'] ?></h4>
 </div>
 <div id="wrapper" class="toggled">
 
@@ -35,10 +35,16 @@ require('../config.php');
     <ul class="sidebar-nav">
     <h4>Settings</h4>
         <li>
-            <a href="#">Change User Password</a>
+            <a href="#">Change Password</a>
         </li>
         <li>
-            <a href="#">Log Out</a>
+            <a href="createDentist.php">Create Dentist Account</a>
+        </li>
+        <li>
+            <a href="#">Create Patient Account</a>
+        </li>
+        <li>
+        <a href="logoutDentist.php">Log Out</a>
         </li>
     </ul>
 </div>
