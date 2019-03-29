@@ -9,9 +9,14 @@ if(isset($_POST['id']) && isset($_POST['id']) != "")
     $id = $_POST['id'];
 
     // delete User
-    $query = "DELETE FROM services WHERE service_id = '$id'";
+  /*  $query = "DELETE FROM services WHERE service_id = '$id'";
     if (!$result = mysqli_query($conn,$query)) {
         exit(mysqli_error());
-    }
+    }*/
+    $stmt = $conn->prepare("DELETE FROM services WHERE service_id = ?");
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+
+
 }
 ?>

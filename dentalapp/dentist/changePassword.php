@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" >
 <?php
-require('config.php');
-include("auth.php");
+require('../config.php');
+include("authDentist.php");
 error_reporting(0);
 ini_set('display_errors', 0);
 if (isset($_REQUEST['newpassword'])){
@@ -26,20 +26,19 @@ if (isset($_REQUEST['newpassword'])){
    }
    else{
     
-     //   $checkpassword = "SELECT * FROM patients WHERE Password ='".md5($password)."' AND Id='".$_SESSION[id]."'";
-       // $result = mysqli_query($conn,$checkpassword) or die(mysqli_error());
-       // $rows = mysqli_num_rows($result);
-       $checkpassword =$conn->prepare("SELECT Id FROM patients WHERE Password =? AND Id=?");
-       $checkpassword ->bind_param("si", md5($password),$_SESSION["id"]);
-       $checkpassword ->execute();
-       $checkpassword ->store_result();
-       if (   $checkpassword ->num_rows == 1) {
-      //  if($rows == 1){  
-        $checkpassword->bind_result($Id);      
-        //$query ="UPDATE patients SET Password ='".md5($newpassword)."' WHERE Id='".$_SESSION[id]."' ";
+      //  $checkpassword = "SELECT * FROM dentists WHERE Password ='".md5($password)."' AND Dentist_Id='".$_SESSION[dID]."'";
+        //$result = mysqli_query($conn,$checkpassword) or die(mysqli_error());
+        //$rows = mysqli_num_rows($result);
+       // if($rows == 1){  
+        $checkpassword =$conn->prepare("SELECT Dentist_Id FROM dentists WHERE Password =? AND Dentist_Id=?");
+        $checkpassword ->bind_param("si", md5($password),$_SESSION["dID"]);
+        $checkpassword ->execute();
+        $checkpassword ->store_result();
+        if ($checkpassword ->num_rows == 1) {
+        //$query ="UPDATE dentists SET Password ='".md5($newpassword)."' WHERE Dentist_Id='".$_SESSION[dID]."' ";
         //$result = mysqli_query($conn,$query);
-        $stmt = $conn->prepare("UPDATE patients SET Password =? WHERE Id=?");
-        $stmt->bind_param("si", md5($newpassword),$Id);
+        $stmt = $conn->prepare("UPDATE dentists SET Password =? WHERE Dentist_Id=?");
+        $stmt->bind_param("si", md5($newpassword),$Dentist_Id);
         $result=$stmt->execute();
            if($result){
             echo '<script> alert("Password Change Successful");';
@@ -56,14 +55,14 @@ if (isset($_REQUEST['newpassword'])){
 ?>
 <head>
   <meta charset="UTF-8">
-  <title>Dental Password Change</title>
+  <title>Dental Password Change (Dentist)</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   
   <link rel='stylesheet' href='https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css'>
 
-      <link rel="stylesheet" href="css/style.css">
+      <link rel="stylesheet" href="../css/style.css">
 
   
 </head>
@@ -77,7 +76,7 @@ if (isset($_REQUEST['newpassword'])){
 
     <div class="wrapper">
     <form class="form-signin" action="" method="POST" >       
-    <center><h2 class="form-signin-heading"><img src="logo.png" width="150" height="150"></h2></center> 
+    <center><h2 class="form-signin-heading"><img src="../logo.png" width="150" height="150"></h2></center> 
       <label >Current Password:</label>
       <input type="password" class="form-control" name="password" placeholder="Current Password" required=""/><br> 
 

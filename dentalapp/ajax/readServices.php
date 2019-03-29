@@ -12,17 +12,18 @@
 							<th>Delete</th>
 						</tr>';
 
-	$query = "SELECT * FROM services";
-
-	if (!$result = mysqli_query($conn,$query)) {
-        exit(mysqli_error());
-    }
+//	$query = "SELECT * FROM services";
+	$query = $conn->prepare("SELECT * FROM services");
+	$query->execute();
+	$result = $query->get_result();
 
     // if query results contains rows then featch those rows 
-    if(mysqli_num_rows($result) > 0)
+  //  if(mysqli_num_rows($result) > 0)
+  if($result->num_rows > 0)
     {
     	$number = 1;
-    	while($row = mysqli_fetch_assoc($result))
+	//	while($row = mysqli_fetch_assoc($result))
+	while($row=$result->fetch_assoc())
     	{
     		$data .= '<tr>
 				<td>'.$row['service_type'].'</td>

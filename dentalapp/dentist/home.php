@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" >
 <?php
-//include("auth.php");
+include("authDentist.php");
 ?>
 
 <head>
@@ -30,7 +30,7 @@
 
 </div>
 <div class="name-bar">
-<h4>Logged In As: <?php ?></h4>
+<h4>Logged In As: <?php echo $_SESSION['name'] ?></h4>
 </div>
 
 <div id="wrapper" class="toggled">
@@ -40,16 +40,19 @@
     <ul class="sidebar-nav">
     <h4>Settings</h4>
         <li>
-            <a href="#">Change User Password</a>
+            <a href="changePassword.php">Change Password</a>
+        </li>
+        <li>
+            <a href="changePatientPassword.php">Change Patient Password</a>
         </li>
         <li>
             <a href="createDentist.php">Create Dentist Account</a>
         </li>
         <li>
-            <a href="#">Create Patient Account</a>
+            <a href="createPatient.php">Create Patient Account</a>
         </li>
         <li>
-            <a href="#">Log Out</a>
+            <a href="logoutDentist.php">Log Out</a>
         </li>
     </ul>
 </div>
@@ -57,7 +60,7 @@
  <div class="wrapper">
     <form class="form-signin">       
       <center><h2 class="form-signin-heading"><img src="../logo.png" width="150" height="150"></h2></center>     
-      <a href="#"><button class="btn btn-lg btn-primary btn-block" type="button">Appointments</button></a><br> 
+      <a href="appointments.php"><button class="btn btn-lg btn-primary btn-block" type="button">Appointments</button></a><br> 
      <a href="services.php"> <button class="btn btn-lg btn-primary btn-block" type="button">Services</button></a><br> 
      <a href="trendalerts.php"> <button class="btn btn-lg btn-primary btn-block" type="button">Trends</button></a><br>
       <a href="#"> <button class="btn btn-lg btn-primary btn-block" type="button">Log Out</button></a><br> 

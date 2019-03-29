@@ -52,15 +52,19 @@ $(window).load(function() {
      <div class="modal-body">
 <?php
 //echo "<label>**ALERT**</label>";
-$sql3 = "SELECT * FROM trend_alerts WHERE min_age <= $diff AND max_age >= $diff";
-$result3 = $conn->query($sql3);;
+//$sql3 = "SELECT * FROM trend_alerts WHERE min_age <= $diff AND max_age >= $diff";
+//$result3 = $conn->query($sql3);;
+  $sql3=$conn->prepare("SELECT * FROM trend_alerts WHERE min_age <= ? AND max_age >= ?");
+  $sql3->bind_param("ss", $diff,$diff);
+  $sql3->execute();
+  $result=$sql3->get_result();
 $i=1;
-if ($result3->num_rows > 0) {
+if ($result->num_rows > 0) {
  // output data of each row 
- while($row3 = $result3->fetch_assoc()) {
+ while($row=$result->fetch_assoc()) {
 
       
-   echo "<p> ".$i." : ". $row3["message"]. "</p><hr>";   
+   echo "<p> ".$i." : ". $row['message']. "</p><hr>";   
   $i++;
  }
 } else {

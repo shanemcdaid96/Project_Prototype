@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" >
 <?php
-require('config.php');
+require('../config.php');
 
 if (isset($_REQUEST['firstname'])){
   // removes backslashes   
@@ -56,7 +56,7 @@ VALUES ('$firstname','$surname','$email','".md5($password)."','$dob','$sex','$ph
   $result = mysqli_query($conn,$query);
   if($result){
     echo '<script> alert("Registration Successful");';
-    echo 'window.location.href = "index.php";';
+    echo 'window.location.href = "home.php";';
     echo '</script>';
    }
   }
@@ -66,14 +66,14 @@ VALUES ('$firstname','$surname','$email','".md5($password)."','$dob','$sex','$ph
 ?>
 <head>
   <meta charset="UTF-8">
-  <title>Dental App-Register</title>
+  <title>Dental App- Add Patient </title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   
   <link rel='stylesheet' href='https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css'>
 
-      <link rel="stylesheet" href="css/style.css">
+      <link rel="stylesheet" href="../css/style.css">
 
   
 </head>
@@ -81,12 +81,13 @@ VALUES ('$firstname','$surname','$email','".md5($password)."','$dob','$sex','$ph
 <body>
 	<div class="icon-bar">
   <a href="home.php"><i class="fa fa-home"></i></a> 
-  <a href="register.php"><i class="fa fa-refresh"></i></a> 
+  <a href="createPatient.php"><i class="fa fa-refresh"></i></a> 
+  <a href="javascript:history.back(1)"><i class="fa fa-step-backward"></i></a>
 </div>
 
     <div class="wrapper">
     <form class="form-signin" action="" method="POST" onsubmit="if(document.getElementById('agree').checked) { return true; } else { alert('Please indicate that you have read and agree to the Terms and Conditions and Privacy Policy'); return false; }" >       
-    <center><h2 class="form-signin-heading"><img src="logo.png" width="150" height="150"></h2></center> 
+    <center><h2 class="form-signin-heading"><img src="../logo.png" width="150" height="150"></h2></center> 
       <label >First Name:</label>
       <input type="text" class="form-control" name="firstname" placeholder="First Name" required=""/><br>
 
@@ -121,11 +122,10 @@ VALUES ('$firstname','$surname','$email','".md5($password)."','$dob','$sex','$ph
       <a href="#" onClick="MyWindow=window.open('https://www.freeprivacypolicy.com/privacy/view/5235f79b015884a2f1a01f6eef127f2f','MyWindow',width=600,height=300); return false;">Privacy Policy</a><br>
       <input type="checkbox" name="checkbox" value="check" id="agree" /> I have read and agree to the Terms and Conditions and Privacy Policy<br>   
       <input type="submit" name="submit" class="btn btn-info btn-block" value="Sign Up"><br>
-      <a href="index.php">Already a Member? Login Here!</a>   
+  
     </form>
   </div>
   ​<div class="footer">
-  <a href="#">Dentist Login</a>
 </div>
 <?php
 }

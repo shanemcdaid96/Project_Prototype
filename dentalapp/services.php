@@ -58,18 +58,14 @@ include("auth.php");
     </thead>
     <tbody>
      <?php
-     $sql = "SELECT * FROM services";
-     $result = $conn->query($sql);
-     
-     if ($result->num_rows > 0) {
-         // output data of each row
-         while($row = $result->fetch_assoc()) {
-             echo "<tr><td>". $row["service_type"]. "</td><td> €" . $row["price"] . "</td></tr>";
-         }
-     } else {
-         echo "0 results";
+     $stmt = $conn->prepare("SELECT * FROM services");
+     $stmt->execute();
+     $result = $stmt->get_result();
+     if($result->num_rows === 0) exit('No rows');
+     while($row = $result->fetch_assoc()) {
+      echo "<tr><td>". $row["service_type"]. "</td><td> €" . $row["price"] . "</td></tr>";
      }
-
+  $stmt->close();
      ?>
     </tbody>
     </table>    
