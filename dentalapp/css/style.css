@@ -6,6 +6,7 @@ body {
 .wrapper {
   margin-top: 80px;
   margin-bottom: 80px;
+  display: block;
 }
 
 .form-signin {
@@ -84,6 +85,15 @@ body {
   color: #fff;
 }
 
+.name-bar{
+  text-align:right;
+  padding: 5px 5px 5px 5px;
+  background-color: #b4b9c1;
+  color: black;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
 select {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -137,4 +147,211 @@ select::-ms-expand {
   -o-transition: .25s all ease;
   transition: .25s all ease;
 }
-        
+.bar {
+  fill: #000;
+}
+
+.bar:hover {
+  fill: slateblue;
+}
+
+.axis-x path {
+  display: none;
+}
+
+.axis text {
+  font-weight: bold;
+}
+
+.age-dropdown {
+  float: right;
+}
+
+.line {
+  stroke: #E4002B;
+  fill: none;
+  stroke-width: 3;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: black;
+  shape-rendering: crispEdges;
+}
+
+.axis text {
+  font-size: 10px;
+  font-family: sans-serif;
+}
+
+.text-label {
+  font-size: 10px;
+  font-family: sans-serif;
+}
+
+.dot {
+  stroke: #293b47;
+  fill: #7A99AC
+}
+.regression {
+  stroke-width: 2px;
+  stroke: red;
+  stroke-dasharray: 10,5;
+}
+.equation {
+  font-size: 12px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+/*
+
+
+
+*/
+/*!
+ * Start Bootstrap - Simple Sidebar HTML Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+/* Toggle Styles */
+
+#wrapper {
+  padding-right: 0;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+#wrapper.toggled {
+  padding-right: 250px;
+}
+
+#sidebar-wrapper {
+  z-index: 1000;
+  position: fixed;
+  right: 250px;
+  width: 0;
+  height: 40%;
+  margin-right: -250px;
+  overflow-y: auto;
+  background: #b4b9c1;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  /*border: 2px solid black;*/
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  width: 250px;
+}
+
+#page-content-wrapper {
+  width: 100%;
+  position: absolute;
+  padding: 15px;
+}
+
+#wrapper.toggled #page-content-wrapper {
+  position: absolute;
+  margin-right: -250px;
+}
+
+/* Sidebar Styles */
+
+.sidebar-nav {
+  position: absolute;
+  top: 0;
+  width: 250px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sidebar-nav li {
+  text-indent: 20px;
+  line-height: 40px;
+}
+
+.sidebar-nav li a {
+  display: block;
+  text-decoration: none;
+  color: #000;
+}
+
+.sidebar-nav li a:hover {
+  text-decoration: none;
+  color: #000;
+  background: rgba(255,255,255,0.2);
+}
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+  text-decoration: none;
+}
+
+.sidebar-nav > .sidebar-brand {
+  height: 65px;
+  font-size: 18px;
+  line-height: 60px;
+}
+
+.sidebar-nav > .sidebar-brand a {
+  color: #000;
+}
+
+.sidebar-nav > .sidebar-brand a:hover {
+  color: #000;
+  background: none;
+}
+
+@media(min-width:768px) {
+  #wrapper {
+      padding-right: 250px;
+  }
+
+  #wrapper.toggled {
+      padding-right: 0;
+  }
+
+  #sidebar-wrapper {
+      width: 250px;
+  }
+
+  #wrapper.toggled #sidebar-wrapper {
+      width: 0;
+  }
+
+  #page-content-wrapper {
+      padding: 20px;
+      position: relative;
+  }
+
+  #wrapper.toggled #page-content-wrapper {
+      position: relative;
+      margin-right: 0;
+  }
+}
+
+.tooltip {
+  background-color: rgba(187,187,187, 0.7);
+  border-radius: 5px;
+  height: 18px;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  text-align: center;
+}
+
+#dentist,#services,#payment,#time {
+  color: #fff;
+}
+
+#update_dentist,#update_services,#update_payment,#update_time {
+  color: #fff;
+}
+

@@ -67,19 +67,7 @@ include("timepicker.php");
      ?>   
     </tbody>
     </table>   
-    <script src="js/delete.js"></script>
     </form> 
-    <script>
-$(document).ready(function(){
-  $('.btn').click(function(){
-    var a=$(this).attr('id');
-    $('#frm_rollno').val(a);
-  
-  });
-});
-
-      </script>
-  </div>
   ​<div class="footer">
 </div>
 	<!-- Edit Item Modal -->
@@ -128,8 +116,7 @@ $(document).ready(function(){
               // output data of each row
               echo "<select name='services' id='services' class='services'>";
               while($row3 = $result3->fetch_assoc()) {
-                  echo "<option  data-price='".$row3["price"]."'>". $row3["service_type"]. "</option>";
-                  
+                  echo "<option  data-price='".$row3["price"]."'>". $row3["service_type"]. "</option>";              
               }
           } else {
               echo "0 results";
