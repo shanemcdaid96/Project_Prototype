@@ -51,7 +51,7 @@ if ($result2->num_rows > 0) {
    }
    else{
 
-  $query = "INSERT into `patients` (First_Name, Surname, Email_Address, Password, DOB, Sex, Phone_Number, PPS_Number)
+  $query = "INSERT into `patients` (First_Name, Surname, Email_Address, Password, DOB, Sex, Phone_Number, Childhood_Hero)
 VALUES ('$firstname','$surname','$email','".md5($password)."','$dob','$sex','$phone','$pps')";
   $result = mysqli_query($conn,$query);
   if($result){

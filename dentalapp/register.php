@@ -52,7 +52,7 @@ if ($result2->num_rows > 0) {
    }
    else{
   //Add user to database
-  $query = "INSERT into `patients` (First_Name, Surname, Email_Address, Password, DOB, Sex, Phone_Number, PPS_Number)
+  $query = "INSERT into `patients` (First_Name, Surname, Email_Address, Password, DOB, Sex, Phone_Number, Childhood_Hero)
 VALUES ('$firstname','$surname','$email','".md5($password)."','$dob','$sex','$phone','$pps')";
   $result = mysqli_query($conn,$query);
   if($result){
@@ -86,7 +86,7 @@ VALUES ('$firstname','$surname','$email','".md5($password)."','$dob','$sex','$ph
 </div>
 
     <div class="wrapper">
-    <form class="form-signin" action="" method="POST" onsubmit="if(document.getElementById('agree').checked) { return true; } else { alert('Please indicate that you have read and agree to the Terms and Conditions and Privacy Policy'); return false; }" >       
+    <form class="form-signin" action="" method="POST" onsubmit="if(document.getElementById('agree').checked) { return true; } else { alert('Please indicate that you have read and agreed to the Terms and Conditions and Privacy Policy'); return false; }" >       
     <center><img src="logo.png" width="300" height="200"><br>
     <h3 class="form-signin-heading">Register</h3></center>
       <label >First Name:</label>
