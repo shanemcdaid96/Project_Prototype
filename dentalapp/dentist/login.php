@@ -11,7 +11,7 @@ $email = stripslashes($_REQUEST['email']);
 $email = mysqli_real_escape_string($conn,$email);
 $password = stripslashes($_REQUEST['password']);
 $password = mysqli_real_escape_string($conn,$password);
-//Checking is user existing in the database or not
+//Checking if dentist is in the database or not
   $query = "SELECT * FROM `dentists` WHERE Email_Address='$email'
 and Password='".md5($password)."'";
 $result = mysqli_query($conn,$query) or die(mysqli_error());
@@ -19,7 +19,7 @@ $rows = mysqli_num_rows($result);
   if($rows==1){
 $_SESSION['emailDentist'] = $email;
 
-      // Redirect user to index.php
+      // Redirect user to home.php
 header("Location: home.php");
    }else{
      ?>
@@ -54,7 +54,8 @@ window.location.href = "login.php";
 
     <div class="wrapper">
     <form class="form-signin" action="" method="post">       
-      <center><h2 class="form-signin-heading"><img src="../logo.png" width="150" height="150"></h2></center>
+    <center><img src="../logo.png" width="300" height="200"><br>
+    <h3 class="form-signin-heading">Dentist Login</h3></center>
       <input type="email" class="form-control" name="email" placeholder="Email Address" required="" autofocus=""  />
       <input type="password" class="form-control" name="password" placeholder="Password" required="" />      
       <input type="submit" class="btn btn-info btn-block" value="Login">

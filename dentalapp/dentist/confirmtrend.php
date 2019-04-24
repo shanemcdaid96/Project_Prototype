@@ -1,6 +1,5 @@
 <?php
 require('../config.php');
-//include("auth.php");
 
 if (isset($_POST['submit'])){
    //Get Selected Service ID
@@ -13,10 +12,7 @@ if (isset($_POST['submit'])){
    $serviceID=$service_id;
      
   
-    
-   /*   $query = "INSERT into `trend_alerts` (message, min_age, max_age, treatment_id)
-       VALUES ('$_POST[message]','$_POST[sab]','$_POST[eab]','$serviceID')";
-         $result = mysqli_query($conn,$query);*/
+        //Add new trend alert to database
          $stmt = $conn->prepare("INSERT INTO trend_alerts(message, min_age, max_age, treatment_id) 
          VALUES(?,?,?,?)");
          $stmt->bind_param("siii",$_POST["message"],$_POST["sab"],$_POST["eab"],$serviceID);

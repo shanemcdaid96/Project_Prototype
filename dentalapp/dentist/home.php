@@ -9,7 +9,6 @@ include("authDentist.php");
   <title>DentalApp - Dentist Home</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
-<!--<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">-->
 <link rel='stylesheet' href='https://netdna.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css'>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
   <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -36,34 +35,15 @@ include("authDentist.php");
 <div id="wrapper" class="toggled">
 
 <!-- Sidebar -->
-<div id="sidebar-wrapper">
-    <ul class="sidebar-nav">
-    <h4>Settings</h4>
-        <li>
-            <a href="changePassword.php">Change Password</a>
-        </li>
-        <li>
-            <a href="changePatientPassword.php">Change Patient Password</a>
-        </li>
-        <li>
-            <a href="createDentist.php">Create Dentist Account</a>
-        </li>
-        <li>
-            <a href="createPatient.php">Create Patient Account</a>
-        </li>
-        <li>
-            <a href="logoutDentist.php">Log Out</a>
-        </li>
-    </ul>
-</div>
-<!-- /#sidebar-wrapper -->
+<?php include("sidebar.php"); ?>
  <div class="wrapper">
     <form class="form-signin">       
-      <center><h2 class="form-signin-heading"><img src="../logo.png" width="150" height="150"></h2></center>     
+    <center><img src="../logo.png" width="300" height="200"><br>
+    <h3 class="form-signin-heading">Dentist Menu</h3></center>    
       <a href="appointments.php"><button class="btn btn-lg btn-primary btn-block" type="button">Appointments</button></a><br> 
      <a href="services.php"> <button class="btn btn-lg btn-primary btn-block" type="button">Services</button></a><br> 
      <a href="trendalerts.php"> <button class="btn btn-lg btn-primary btn-block" type="button">Trends</button></a><br>
-      <a href="#"> <button class="btn btn-lg btn-primary btn-block" type="button">Log Out</button></a><br> 
+      <a href="logoutDentist.php"> <button class="btn btn-lg btn-primary btn-block" type="button">Log Out</button></a><br> 
     </form>
   ​<div class="footer">
 </div>

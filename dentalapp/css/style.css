@@ -346,3 +346,12 @@ select::-ms-expand {
   position: absolute;
   text-align: center;
 }
+
+#dentist,#services,#payment,#time {
+  color: #fff;
+}
+
+#update_dentist,#update_services,#update_payment,#update_time {
+  color: #fff;
+}
+

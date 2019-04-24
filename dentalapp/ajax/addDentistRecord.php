@@ -1,14 +1,16 @@
 <?php
+/*
+Author: Shane Mc Daid
+File Action: Add appointment from dentist portal to database
+
+*/
 	if(isset($_POST['appTime']) && isset($_POST['appDate']))
 	{
 		// include Database connection file 
 		include("config.php");
 
 		   //Get User ID
-		  // $sql = "SELECT * FROM patients WHERE Email_Address LIKE '%$_POST[patient]%' OR Id LIKE '$_POST[patient]%' LIMIT 1";
-		   //$result = mysqli_query($conn, $sql);
-		   //$row = mysqli_fetch_assoc($result);
-			 //$userID = $row['Id'];
+
 			$sql= $conn->prepare("SELECT * FROM patients WHERE Email_Address LIKE ? OR Id LIKE ?");
 			$search1 = '%'.$_POST['patient'].'%';
 			$search2 = $_POST['patient'].'%';
@@ -46,11 +48,6 @@
 						echo '<script src="../js/doublebooking.js"></script>';
 				}
 		   }else{
-		    /* $query = " INSERT INTO appointment(appDate, appTime, dentistID, userID, serviceID, paymentMethod)  
-		      VALUES('$appDate', '$appTime', '$id', '$userID', '$serviceID','$payment')";
-		          if (!$result = mysqli_query($conn,$query)) {
-	                 exit(mysqli_error());
-										}*/
 					$stmt = $conn->prepare("INSERT INTO appointment(appDate, appTime, dentistID, userID, serviceID, paymentMethod)  
 					VALUES(?,?,?,?,?,?)");
 					$stmt->bind_param("ssiiis",$appDate,$appTime,$id,$userID,$serviceID,$payment);

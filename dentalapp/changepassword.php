@@ -17,27 +17,25 @@ if (isset($_REQUEST['newpassword'])){
   $confirmnewpassword = stripslashes($_REQUEST['confirmnewpassword']);
   $confirmnewpassword = mysqli_real_escape_string($conn,$confirmnewpassword);
 
+   //check of the entered passwords match
    if($password !=$confirmpassword || $newpassword != $confirmnewpassword ){
     echo '<script> alert("Change Failed - Passwords do not match!!");';
     echo '</script>';
+    //check if password meets security requirements
    }else if(preg_match("/^.*(?=.{8,})(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).*$/", $newpassword) === 0){
     echo '<script> alert("Change Failed - Passwords do not meet password requirements!!");';
     echo '</script>';
    }
    else{
     
-     //   $checkpassword = "SELECT * FROM patients WHERE Password ='".md5($password)."' AND Id='".$_SESSION[id]."'";
-       // $result = mysqli_query($conn,$checkpassword) or die(mysqli_error());
-       // $rows = mysqli_num_rows($result);
        $checkpassword =$conn->prepare("SELECT Id FROM patients WHERE Password =? AND Id=?");
        $checkpassword ->bind_param("si", md5($password),$_SESSION["id"]);
        $checkpassword ->execute();
        $checkpassword ->store_result();
        if (   $checkpassword ->num_rows == 1) {
-      //  if($rows == 1){  
+        //if there is a match
         $checkpassword->bind_result($Id);      
-        //$query ="UPDATE patients SET Password ='".md5($newpassword)."' WHERE Id='".$_SESSION[id]."' ";
-        //$result = mysqli_query($conn,$query);
+        //Update password
         $stmt = $conn->prepare("UPDATE patients SET Password =? WHERE Id=?");
         $stmt->bind_param("si", md5($newpassword),$Id);
         $result=$stmt->execute();
@@ -77,7 +75,8 @@ if (isset($_REQUEST['newpassword'])){
 
     <div class="wrapper">
     <form class="form-signin" action="" method="POST" >       
-    <center><h2 class="form-signin-heading"><img src="logo.png" width="150" height="150"></h2></center> 
+    <center><img src="logo.png" width="300" height="200"><br>
+    <h3 class="form-signin-heading">Reset Password</h3></center>
       <label >Current Password:</label>
       <input type="password" class="form-control" name="password" placeholder="Current Password" required=""/><br> 
 

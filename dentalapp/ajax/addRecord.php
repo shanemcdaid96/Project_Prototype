@@ -1,4 +1,5 @@
 <?php
+
 	if(isset($_POST['appTime']) && isset($_POST['appDate']))
 	{
 		// include Database connection file 
@@ -33,7 +34,6 @@
           $bookingcheck->bind_param("iss", $dentistID,$appDate,$appTime);
           $bookingcheck->execute();
           $bookingcheck->store_result();
-         // $resultCheck = $conn->query($bookingcheck);   
           if ($bookingcheck->num_rows > 0) {
             // output data of each row
             $bookingcheck->bind_result($app_ID);
@@ -41,11 +41,6 @@
                 echo '<script src="../js/doublebooking.js"></script>';
             }
 		   }else{
-		   /*  $query = " INSERT INTO appointment(appDate, appTime, dentistID, userID, serviceID, paymentMethod)  
-		      VALUES('$appDate', '$appTime', '$dentistID', '$id', '$serviceID','$payment')";
-		          if (!$result = mysqli_query($conn,$query)) {
-	                 exit(mysqli_error());
-										}*/
 						$stmt = $conn->prepare("INSERT INTO appointment(appDate, appTime, dentistID, userID, serviceID, paymentMethod)  
 						VALUES(?,?,?,?,?,?)");
 						$stmt->bind_param("ssiiis",$appDate,$appTime,$dentistID,$id,$serviceID,$payment);

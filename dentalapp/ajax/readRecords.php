@@ -1,8 +1,11 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">  
 <?php
+
 	// include Database connection file 
 	include("config.php");
 	include("../auth.php");
+
+	$current_date=date("m/d/Y");
 
 	// Design initial table header 
 	$data = '<table class="table table-bordered table-striped">
@@ -14,9 +17,9 @@
 							<th>Update</th>
 							<th>Delete</th>
 						</tr>';
-	// $query = "SELECT * FROM appointment WHERE userID ='$_SESSION[id]'";
-	$query = $conn->prepare("SELECT * FROM appointment WHERE userID = ?");
-	$query->bind_param("i", $_SESSION["id"]);
+   //Find appointments were the date is greater than current date and the user is the one currently logged in
+	$query = $conn->prepare("SELECT * FROM appointment WHERE userID = ? AND appDate >= ?");
+	$query->bind_param("is", $_SESSION["id"],$current_date);
     $query->execute();
 	$result = $query->get_result();
 	
@@ -50,5 +53,5 @@
 
     $data .= '</table>';
 
-    echo $data;
+	echo $data;
 ?>

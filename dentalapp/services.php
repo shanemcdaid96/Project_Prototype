@@ -32,23 +32,12 @@ include("auth.php");
 </div>
 <div id="wrapper" class="toggled">
 
-<!-- Sidebar -->
-<div id="sidebar-wrapper">
-    <ul class="sidebar-nav">
-    <h4>Settings</h4>
-        <li>
-            <a href="changepassword.php">Change User Password</a>
-        </li>
-        <li>
-            <a href="logout.php">Log Out</a>
-        </li>
-    </ul>
-</div>
-<!-- /#sidebar-wrapper -->
+<?php include("patient-sidebar.php"); ?>
 
     <div class="wrapper">
     <form class="form-signin">       
-      <center><h2 class="form-signin-heading"><img src="logo.png" width="150" height="150"></h2></center> 
+    <center><img src="logo.png" width="300" height="200"><br>
+    <h3 class="form-signin-heading">Services</h3></center>
       <table class="table">
     <thead>
       <tr>
@@ -58,6 +47,7 @@ include("auth.php");
     </thead>
     <tbody>
      <?php
+     //Get service details
      $stmt = $conn->prepare("SELECT * FROM services");
      $stmt->execute();
      $result = $stmt->get_result();

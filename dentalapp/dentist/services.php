@@ -14,6 +14,7 @@ include("authDentist.php");
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">  
           <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+          <script src="https://d3js.org/d3.v4.min.js"></script>  
           <link rel="stylesheet" href="../css/style.css">
 </head>
 
@@ -31,29 +32,13 @@ include("authDentist.php");
 <div id="wrapper" class="toggled">
 
 <!-- Sidebar -->
-<div id="sidebar-wrapper">
-    <ul class="sidebar-nav">
-    <h4>Settings</h4>
-        <li>
-            <a href="#">Change Password</a>
-        </li>
-        <li>
-            <a href="createDentist.php">Create Dentist Account</a>
-        </li>
-        <li>
-            <a href="#">Create Patient Account</a>
-        </li>
-        <li>
-        <a href="logoutDentist.php">Log Out</a>
-        </li>
-    </ul>
-</div>
+<?php include("sidebar.php"); ?>
 <!-- /#sidebar-wrapper -->
 
     <div class="wrapper">
     <form class="form-signin">       
-      <center><h2 class="form-signin-heading"><img src="../logo.png" width="150" height="150"></h2></center> 
-      <div class="row">
+    <center><img src="../logo.png" width="300" height="200"><br>
+    <h3 class="form-signin-heading">Services</h3></center>
         <div class="col-md-12">
             <div class="pull-right">
              
@@ -62,9 +47,22 @@ include("authDentist.php");
         </div>
         <div class="service_content"></div>
     </tbody>
-    </table>   
+    </table>  
     </form>
-  </div>
+ 
+  </div><br>
+  <form class="form-signin">
+  <center><h3 class="form-signin-heading">Current Prices Across Donegal</h3></center> 
+    <div id="chart"></div>
+    <form>
+  	<center><label><input type="radio" name="treatment" value="denture"> Dentures</label>
+  		<label><input type="radio" name="treatment" value="exam"> Examinations</label>
+  		<label><input type="radio" name="treatment" value="crown"> Crowns</label>
+  		<label><input type="radio" name="treatment" value="filling"> Fillings</label>
+</center>
+	</form>
+</form>
+
   ​<div class="footer">
 </div>
 <!-- Modal -->
@@ -123,6 +121,8 @@ include("authDentist.php");
 
 <script type="text/javascript" src="../js/menutoggle.js"></script>
 <script type="text/javascript" src="../js/services.js"></script>
+<script type="text/javascript" src="../js/chart4.js"></script>
+
 </body>
 </html>
 

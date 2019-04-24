@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" >
 <?php
+
 require('../config.php');
 include("authDentist.php");
 error_reporting(0);
@@ -14,17 +15,16 @@ if (isset($_REQUEST['newpassword'])){
   $confirmnewpassword = stripslashes($_REQUEST['confirmnewpassword']);
   $confirmnewpassword = mysqli_real_escape_string($conn,$confirmnewpassword);
 
+  //check if passwords match
    if( $newpassword != $confirmnewpassword ){
     echo '<script> alert("Change Failed - Passwords do not match!!");';
     echo '</script>';
+    //check for password security requirements
    }else if(preg_match("/^.*(?=.{8,})(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).*$/", $newpassword) === 0){
     echo '<script> alert("Change Failed - Passwords do not meet password requirements!!");';
     echo '</script>';
    }
    else{        
-      //  $query ="UPDATE dentists SET Password ='".md5($newpassword)."' WHERE Dentist_Id='".$_SESSION[dID]."' ";
-     // $query = "UPDATE patients SET Password ='".md5($newpassword)."' WHERE Email_Address LIKE '%$_POST[patients]%' OR Id LIKE '%$_POST[patients]%' AND Password='".md5($password)."'";
-      //  $result = mysqli_query($conn,$query);
       $stmt = $conn->prepare("UPDATE patients SET Password =? WHERE Email_Address LIKE ? OR Id LIKE ? AND Password=?");
       $search1 = '%'.$_POST['patient'].'%';
 			$search2 = $_POST['patient'].'%';
@@ -66,7 +66,8 @@ if (isset($_REQUEST['newpassword'])){
 
     <div class="wrapper">
     <form class="form-signin" action="" method="POST" >       
-    <center><h2 class="form-signin-heading"><img src="../logo.png" width="150" height="150"></h2></center>
+    <center><img src="../logo.png" width="300" height="200"><br>
+    <h3 class="form-signin-heading">Reset Patient Password</h3></center>
     <label>Search Patient</label>
     <input type='text' class='form-control' name='patients' id='patients' autocomplete='off' placeholder='Search by ID or Email Address' required=""/><br>
     <label>Patient</label>

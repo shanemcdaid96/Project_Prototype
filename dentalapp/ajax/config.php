@@ -1,4 +1,5 @@
 <?php
+
 $host = 'dentalapp-server.mysql.database.azure.com';
 $username = 'shane@dentalapp-server';
 $password = 'Gonero.32';

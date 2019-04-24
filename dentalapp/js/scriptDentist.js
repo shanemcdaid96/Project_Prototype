@@ -269,3 +269,13 @@ $(document).ready(function () {
   // READ recods on page load
   readRecords(); // calling function
 });
+
+$('[name=time] option').filter(function(){
+  return this.value == '11:30'
+}).remove();
+$('[name=time] option').filter(function(){
+  return this.value == '12:00'
+}).remove();
+$('[name=time] option').filter(function(){
+  return this.value == '12:30'
+}).remove();

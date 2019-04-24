@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" >
 <?php
+
 require('../config.php');
 if (isset($_REQUEST['name'])){
   // removes backslashes
@@ -33,6 +34,8 @@ if ($result2->num_rows > 0) {
     echo '<script> alert("Registration Failed - Passwords do not match!!");';
     echo 'window.location.href = "createDentist.php";';
     echo '</script>';
+    
+    //function checks if the entered password meets the following requirments
    }else if(preg_match("/^.*(?=.{8,})(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).*$/", $password) === 0){
     echo '<script> alert("Registration Failed - Passwords do not meet password requirements!!");';
     echo 'window.location.href = "createDentist.php";';
@@ -75,7 +78,8 @@ VALUES ('$name','$email','".md5($password)."')";
 
     <div class="wrapper">
     <form class="form-signin" action="" method="POST" >       
-    <center><h2 class="form-signin-heading"><img src="../logo.png" width="150" height="150"></h2></center> 
+    <center><img src="../logo.png" width="300" height="200"><br>
+    <h3 class="form-signin-heading">Register Dentist</h3></center>
       <label >Name:</label>
       <input type="text" class="form-control" name="name" placeholder="Full Name" required=""/><br>
 

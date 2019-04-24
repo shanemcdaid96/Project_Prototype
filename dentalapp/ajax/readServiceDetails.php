@@ -5,23 +5,16 @@ include("config.php");
 // check request
 if(isset($_POST['id']) && isset($_POST['id']) != "")
 {
-    // get User ID
+    // get Service ID
     $id = $_POST['id'];
 
-    // Get User Details
-   /* $query = "SELECT * FROM services  WHERE service_id = '$id'";
-    if (!$result = mysqli_query($conn,$query)) {
-        exit(mysqli_error());
-    }*/
-
+    // Get Service Details
     $stmt= $conn->prepare($query = "SELECT * FROM services WHERE service_id = ?");
     $stmt->bind_param("i", $id);
     $stmt->execute();
    $result=$stmt->get_result();
     $response = array();
-   // if(mysqli_num_rows($result) > 0) {
     if($result->num_rows>0){
-    //    while ($row = mysqli_fetch_assoc($result)) {
         while($row=$result->fetch_assoc()) {
             $response = $row;
         }

@@ -1,8 +1,12 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">  
 <?php
+
 	// include Database connection file 
 	include("config.php");
 	include("../dentist/authDentist.php");
+
+	//get current date
+	$current_date=date("m/d/Y");
 
 	// Design initial table header 
 	$data = '<table class="table table-bordered table-striped">
@@ -14,21 +18,19 @@
 							<th>Update</th>
 							<th>Delete</th>
 						</tr>';
-//	 $query = "SELECT * FROM appointment WHERE dentistID ='$_SESSION[dID]'";
-$query = $conn->prepare("SELECT * FROM appointment WHERE dentistID = ?");
-$query->bind_param("i", $_SESSION["dID"]);
+//Find appointments were the date is greater than current date and the dentist is the one currently logged in
+$query = $conn->prepare("SELECT * FROM appointment WHERE dentistID = ? AND appDate >= ?");
+$query->bind_param("is", $_SESSION["dID"],$current_date);
 $query->execute();
 $result = $query->get_result();
 	
 
 
-	// if query results contains rows then featch those rows 
-	
-  //  if(mysqli_num_rows($result) > 0)
+	// if query results contains rows then fetch those rows 
+
   if($result->num_rows > 0)
     {
     	$number = 1;
-		//while($row = mysqli_fetch_assoc($result))
 		while($row=$result->fetch_assoc())
     	{
     		$data .= '<tr>

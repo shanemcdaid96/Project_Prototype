@@ -32,25 +32,15 @@ include("auth.php");
 <h4>Logged In As: <?php echo $_SESSION['firstname'] ,' ',$_SESSION['surname']  ?></h4>
 </div>
 <div id="wrapper" class="toggled">
-
-<!-- Sidebar -->
-<div id="sidebar-wrapper">
-    <ul class="sidebar-nav">
-    <h4>Settings</h4>
-        <li>
-            <a href="changepassword.php">Change User Password</a>
-        </li>
-        <li>
-            <a href="logout.php">Log Out</a>
-        </li>
-    </ul>
-</div>
-<!-- /#sidebar-wrapper -->
+<?php
+ include("patient-sidebar.php");
+?>
 
 <!-- Content Section -->
 <div class="wrapper"> 
 <form class="form-signin">   
-<center><h2 class="form-signin-heading"><img src="logo.png" width="150" height="150"></h2></center>        
+<center><img src="logo.png" width="300" height="200"><br>
+    <h3 class="form-signin-heading">Appointments</h3></center>
     <div class="row">
         <div class="col-md-12">
             <h1></h1>
@@ -65,7 +55,6 @@ include("auth.php");
     </div>
     <div class="row">
         <div class="col-md-12">
-            <h3>Appointments:</h3>
 
             <div class="records_content"></div>
         </div>
@@ -277,6 +266,6 @@ include("auth.php");
     ga('create', 'UA-75591362-1', 'auto');
     ga('send', 'pageview');
 
-</script>
+
 </body>
 </html>

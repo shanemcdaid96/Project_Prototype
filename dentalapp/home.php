@@ -22,7 +22,9 @@ $(window).load(function() {
     $('#myModal').modal('show');
 });
 </script>
+
 <?php  $_SESSION["dob"]; 
+            //Minus the current date from the user's date of birth to get the user's age
             $diff = (date('Y') - date('Y',strtotime($_SESSION["dob"])));
             $diff;
               ?>
@@ -51,9 +53,7 @@ $(window).load(function() {
      </div>
      <div class="modal-body">
 <?php
-//echo "<label>**ALERT**</label>";
-//$sql3 = "SELECT * FROM trend_alerts WHERE min_age <= $diff AND max_age >= $diff";
-//$result3 = $conn->query($sql3);;
+//get trend alerts where the user's age resides in the alert's age group
   $sql3=$conn->prepare("SELECT * FROM trend_alerts WHERE min_age <= ? AND max_age >= ?");
   $sql3->bind_param("ss", $diff,$diff);
   $sql3->execute();
@@ -83,21 +83,11 @@ if ($result->num_rows > 0) {
 <div id="wrapper" class="toggled">
 
 <!-- Sidebar -->
-<div id="sidebar-wrapper">
-    <ul class="sidebar-nav">
-    <h4>Settings</h4>
-        <li>
-            <a href="changepassword.php">Change User Password</a>
-        </li>
-        <li>
-            <a href="logout.php">Log Out</a>
-        </li>
-    </ul>
-</div>
-<!-- /#sidebar-wrapper -->
+<?php include("patient-sidebar.php"); ?>
  <div class="wrapper">
     <form class="form-signin">       
-      <center><h2 class="form-signin-heading"><img src="logo.png" width="150" height="150"></h2></center>     
+    <center><img src="logo.png" width="300" height="200"><br>
+    <h3 class="form-signin-heading">Menu - Patient</h3></center> 
       <a href="bookappointments.php"><button class="btn btn-lg btn-primary btn-block" type="button">Appointments</button></a><br> 
      <a href="services.php"> <button class="btn btn-lg btn-primary btn-block" type="button">Services</button></a><br> 
       <a href="logout.php"> <button class="btn btn-lg btn-primary btn-block" type="button">Log Out</button></a><br> 

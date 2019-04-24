@@ -1,4 +1,5 @@
 <?php
+
 require('../config.php');
 include("../timepicker.php");
 include("authDentist.php");
@@ -33,30 +34,12 @@ include("authDentist.php");
 </div>
 <div id="wrapper" class="toggled">
 
-<!-- Sidebar -->
-<div id="sidebar-wrapper">
-    <ul class="sidebar-nav">
-    <h4>Settings</h4>
-         <li>
-            <a href="#">Change Password</a>
-        </li>
-        <li>
-            <a href="createDentist.php">Create Dentist Account</a>
-        </li>
-        <li>
-            <a href="#">Create Patient Account</a>
-        </li>
-        <li>
-            <a href="logoutDentist.php">Log Out</a>
-        </li>
-    </ul>
-</div>
-<!-- /#sidebar-wrapper -->
-
+<?php include("sidebar.php"); ?>
 <!-- Content Section -->
 <div class="wrapper"> 
 <form class="form-signin">   
-<center><h2 class="form-signin-heading"><img src="../logo.png" width="150" height="150"></h2></center>        
+<center><img src="../logo.png" width="300" height="200"><br>
+    <h3 class="form-signin-heading">Appointments</h3></center>      
     <div class="row">
         <div class="col-md-12">
             <h1></h1>
@@ -71,7 +54,6 @@ include("authDentist.php");
     </div>
     <div class="row">
         <div class="col-md-12">
-            <h3>Appointments:</h3>
 
             <div class="records_content"></div>
         </div>

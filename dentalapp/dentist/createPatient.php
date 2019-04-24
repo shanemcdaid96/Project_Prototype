@@ -87,7 +87,8 @@ VALUES ('$firstname','$surname','$email','".md5($password)."','$dob','$sex','$ph
 
     <div class="wrapper">
     <form class="form-signin" action="" method="POST" onsubmit="if(document.getElementById('agree').checked) { return true; } else { alert('Please indicate that you have read and agree to the Terms and Conditions and Privacy Policy'); return false; }" >       
-    <center><h2 class="form-signin-heading"><img src="../logo.png" width="150" height="150"></h2></center> 
+    <center><img src="../logo.png" width="300" height="200"><br>
+    <h3 class="form-signin-heading">Register Patient</h3></center>
       <label >First Name:</label>
       <input type="text" class="form-control" name="firstname" placeholder="First Name" required=""/><br>
 
@@ -110,8 +111,8 @@ VALUES ('$firstname','$surname','$email','".md5($password)."','$dob','$sex','$ph
       <label >Date of Birth:</label>
       <input type="date" class="form-control" name="dob" placeholder="Date of Birth" required=""/><br>
 
-      <label >PPS Number (Optional):</label>
-      <input type="text"  class="form-control" name="pps" placeholder="PPS Number" /><br>
+      <label >Security Question: Patient's Childhood Hero?</label>
+      <input type="text"  class="form-control" name="pps" placeholder="Enter Name" /><br>
 
       <label >Password:</label>
       <input type="password" class="form-control" name="password" placeholder="Password" required=""/><br> 

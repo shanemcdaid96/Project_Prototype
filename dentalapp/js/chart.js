@@ -1,6 +1,7 @@
 var	margin = {top: 30, right: 20, bottom: 60, left: 60},
 	width = 500 - margin.left - margin.right,
-	height = 320 - margin.top - margin.bottom;
+  height = 320 - margin.top - margin.bottom;
+//set canvas for chart
 var svg = d3.select("#chart")
     	.append("svg")
 		.attr("width", width + margin.left + margin.right)
@@ -8,20 +9,21 @@ var svg = d3.select("#chart")
 	.append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+//scale x axis range
 var x = d3.scaleLinear()
   .range([0,width]);
-
+//scale y axis range
 var y = d3.scaleLinear()
   .range([height,0]);
-
+//scale xAxis
 var xAxis = d3.axisBottom()
   .scale(x);
-
+//scale yAxis
 var yAxis = d3.axisLeft()
   .scale(y);
 
   
-
+//retrieve data from the specified php file and convert it to JSON format
 d3.json("../dentist/trend1.php",function(error,data){
 y.domain(d3.extent(data, function(d){ return d.value=+d.value}));
 x.domain(d3.extent(data, function(d){ return d.age=+d.age}));
@@ -120,11 +122,11 @@ return d;
 // Calculate a linear regression from the data
 
 // Takes 5 parameters:
-// (1) Your data
-// (2) The column of data plotted on your x-axis
-// (3) The column of data plotted on your y-axis
-// (4) The minimum value of your x-axis
-// (5) The minimum value of your y-axis
+// (1) data from database
+// (2) The column of data plotted on the x-axis
+// (3) The column of data plotted on the y-axis
+// (4) The minimum value of x-axis
+// (5) The minimum value of y-axis
 
 // Returns an object with two points, where each point is an object with an x and y coordinate
 
@@ -182,10 +184,6 @@ var f = m * xSum;
 // Plug the values you have calculated for e and f into the following equation for the y-intercept
 // y-intercept = b = (e - f) / n
 var b = (e - f) / n;
-
-// Print the equation below the chart
-//	document.getElementsByClassName("equation")[0].innerHTML = "y = " + m + "x + " + b;
-//	document.getElementsByClassName("equation")[1].innerHTML = "x = ( y - " + b + " ) / " + m;
 
 // return an object of two points
 // each point is an object with an x and y coordinate

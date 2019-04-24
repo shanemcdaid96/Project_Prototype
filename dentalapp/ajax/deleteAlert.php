@@ -6,11 +6,11 @@ if(isset($_POST['id']) && isset($_POST['id']) != "")
     // include Database connection file
     include("config.php");
 
-    // get service id
+   //set value of Id to the POST value
     $id = $_POST['id'];
 
-    // delete User
-    $stmt = $conn->prepare("DELETE FROM services WHERE service_id = ?");
+
+    $stmt = $conn->prepare("DELETE FROM trend_alerts WHERE alert_id = ?");
     $stmt->bind_param("i", $id);
     $stmt->execute();
 

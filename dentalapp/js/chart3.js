@@ -1,6 +1,7 @@
 var	margin = {top: 30, right: 20, bottom: 60, left: 60},
 	width = 500 - margin.left - margin.right,
-	height = 320 - margin.top - margin.bottom;
+  height = 320 - margin.top - margin.bottom;
+  //set canvas for chart
 var svg3 = d3.select("#chart")
     	.append("svg")
 		.attr("width", width + margin.left + margin.right)
@@ -8,19 +9,20 @@ var svg3 = d3.select("#chart")
 	.append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+//scale x axis range
 var x = d3.scaleLinear()
   .range([0,width]);
-
+//scale y axis range
 var y = d3.scaleLinear()
   .range([height,0]);
-
+//scale xAxis
 var xAxis = d3.axisBottom()
   .scale(x);
-
+//scale yAxis
 var yAxis = d3.axisLeft()
   .scale(y);
 
-//d3.csv("../dentist/data.csv",types,function(error, data){
+//retrieve data from the specified php file and convert it to JSON format
 d3.json("../dentist/trend3.php",function(error,data){
 y.domain(d3.extent(data, function(d){ return d.value=+d.value}));
 x.domain(d3.extent(data, function(d){ return d.age=+d.age}));

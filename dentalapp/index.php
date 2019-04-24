@@ -17,7 +17,8 @@
   <div class="form">
 
  <form class="form-signin" id="loginform" action="" method="POST">
-   <center><h2 class="form-signin-heading"><img src="logo.png" width="150" height="150"></h2></center>
+   <center><img src="logo.png" width="300" height="200"><br>
+    <h3 class="form-signin-heading">Login</h3></center>
    <div id="message"></div>
       <input type="email" class="form-control" placeholder="Email Address" name="email" id="email" required/>
       <span id="uname"></span>
@@ -38,23 +39,24 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
  
 <script type="text/javascript">
-var attempts=0;
+var attempts=0; //login attempts
   $("#loginform").on("submit",function(e){
  
-   
+   //clear form
     $('#uname').html('');
     $('#upass').html('');
     $('#message').html('');
         
         var email=$("#email").val();
         var password=$("#password").val();
+        //if email field is empty
         if($("#email").val()==""){
                $("#uname").html("Please enter Email.");
                $("#uname").css("color", "red");
                $("#user_name").css("border", "1px solid grey");
                $("#user_name").focus();
              }
-        
+        //if password field is empty
         else if($("#password").val()==""){
               $("#upass").html("Please enter password.");
                $("#upass").css("color", "red");
@@ -63,21 +65,23 @@ var attempts=0;
         }
       else
       {
+         //make Ajax request to do_login.php
            $.ajax({
             type:"POST",
             url:"do_login.php",
             data:{"email":email,"password":password},
             success:function(result){
-              //alert(result);
+              //if the return value of do_login.php is 1
              if(result==1){
-               //alert("invalid");
-               attempts++;
+               attempts++;// add new attempt
                 $("#message").html("Invalid Email/Password");
                  $("#message").css("color", "red");
-                 if(attempts>2){
+                 if(attempts>2){   //after 3  login attempts
+  
                   $("#message").html("3 attempts used - contact dentist for password reset");
                  $("#message").css("color", "red");
-                 document.getElementById("submt").disabled = true;
+                 document.getElementById("submt").disabled = true;//disable button
+                 //make Ajax request to restrict_login.php
                  $.ajax({
                   type:"POST",
                   url:"restrict_login.php",
@@ -88,7 +92,7 @@ var attempts=0;
                  });
                  } 
                 }
-                else if(result==2){
+                else if(result==2){//if the return value of do_login.php is 2
                   $("#message").html("Access Denied for 30 minutes");
                  $("#message").css("color", "red");
                  document.getElementById("submt").disabled = true;

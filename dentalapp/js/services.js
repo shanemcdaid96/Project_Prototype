@@ -10,6 +10,14 @@ $('.services').change(function(){
         });
     }
 
+    function readAlerts() {
+        $.get("../ajax/readAlerts.php", {}, function (data, status) {
+            $(".alerts").html(data);
+            console.log(data);
+        });
+    }
+
+
     // Add Record
 function addService() {
     if($('#addservice').val() == "")  
@@ -45,6 +53,48 @@ function addService() {
 }
 }
 
+function addAlert() {
+    if($('#comment').val() == "")  
+    {  
+         alert("Comment is required");  
+    }  
+    else if($('#second').val() == '')  
+    {  
+         alert("Max Age is required");  
+    } 
+    else if($('#age_range').val() == '')  
+    {  
+         alert("Min Age is required");  
+    }
+    else{
+    // get values
+    var message = $("#comment").val();
+    var min = $("#age-range").val();
+    var max = $("#second").val();
+    var service = $("#services").val();
+
+
+
+    // Add record
+    $.post("../ajax/addAlert.php", {
+        message: message,
+        min: min,
+        max: max,
+        service: service
+    }, 
+    function (data, status) {
+
+        // read records again
+        readAlerts();
+
+        // clear fields from the popup
+         $("#comment").val("");
+         $("#age-range").val("");
+         $("#second").val("");
+    });
+}
+}
+
 function DeleteService(id) {
     var conf = confirm("Are you sure, do you really want to delete this Service?");
     if (conf == true) {
@@ -54,6 +104,20 @@ function DeleteService(id) {
             function (data, status) {
                 // reload Users by using readRecords();
                 readServices();
+            }
+        );
+    }
+}
+
+function DeleteAlert(id) {
+    var conf = confirm("Are you sure, do you really want to delete this Alert?");
+    if (conf == true) {
+        $.post("../ajax/deleteAlert.php", {
+                id: id
+            },
+            function (data, status) {
+                // reload Users by using readRecords();
+                readAlerts();
             }
         );
     }
@@ -106,5 +170,5 @@ function UpdateService() {
     
     $(document).ready(function () {
         readServices(); // calling function
-
+        readAlerts();
     });

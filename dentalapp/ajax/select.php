@@ -3,8 +3,7 @@
  if(isset($_POST["id"]))  
  {        
       $output = '';   
-   //   $query = "SELECT * FROM appointment a, services s, dentists d WHERE a.serviceID=s.service_id AND a.dentistID=d.Dentist_Id AND a.app_ID = '".$_POST["id"]."'";  
-     // $result = mysqli_query($conn, $query);  
+   //Get details of selected appointment 
      $stmt= $conn->prepare($query = "SELECT appTime,appDate,service_type,price,Full_Title,paymentMethod FROM appointment a, services s, dentists d WHERE a.serviceID=s.service_id AND a.dentistID=d.Dentist_Id AND a.app_ID=?");
      $stmt->bind_param("i", $id);
      $id = $_POST["id"];
@@ -14,7 +13,6 @@
       <div class="table-responsive">  
            <table class="table table-bordered">';
            while($stmt->fetch())  
-      //while($row = mysqli_fetch_array($result))  
       {  
            $output .= '  
                 <tr>  

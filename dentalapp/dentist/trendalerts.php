@@ -16,8 +16,7 @@ require("../config.php");
   <link rel='stylesheet' href='https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
 
       <link rel="stylesheet" href="../css/style.css">
-   <!--   <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script> -->
-    <!--  <script src="https://d3js.org/d3.v5.min.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.25.0/babel.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://d3js.org/d3.v4.min.js"></script>  
@@ -38,29 +37,14 @@ require("../config.php");
 <div id="wrapper" class="toggled">
 
 <!-- Sidebar -->
-<div id="sidebar-wrapper">
-    <ul class="sidebar-nav">
-    <h4>Settings</h4>
-        <li>
-            <a href="#">Change Password</a>
-        </li>
-        <li>
-            <a href="createDentist.php">Create Dentist Account</a>
-        </li>
-        <li>
-            <a href="#">Create Patient Account</a>
-        </li>
-        <li>
-        <a href="logoutDentist.php">Log Out</a>
-        </li>
-    </ul>
-</div>
+<?php include("sidebar.php"); ?>
   <div class="wrapper">
   <form class="form-signin">       
-      <center><h2 class="form-signin-heading"><img src="../logo.png" width="150" height="150"></h2></center> 
+  <center><img src="../logo.png" width="300" height="200"><br>
+    <h3 class="form-signin-heading">Trends</h3></center>
  <div id="chart"></div><br>
 </form><br>
-    <form class="form-signin" action="confirmtrend.php" method="POST"> 
+    <form class="form-signin" action="" method="POST"> 
     <label for="comment">Create New Trend Alert: </label>
       <textarea name="message" class="form-control" rows="5" id="comment" required></textarea><br>
  <div class="age-dropdown"> 
@@ -89,9 +73,14 @@ require("../config.php");
    echo "</div><br>";
 
 ?>
-<input type='submit' name='submit' class='btn btn-info btn-block' value='Create Alert'>
+<input type='button' name='submit' class='btn btn-info btn-block' value='Create Alert' onclick="addAlert()"><br>
+</form><br>
+<form class="form-signin"> 
+<label>Current Trend Alerts</label>
+<div class="alerts"></div>
 </form>
 </div>
+<div id="chart2"></div><br>
   ​<div class="footer">
 </div>
 </body>
@@ -100,5 +89,6 @@ require("../config.php");
 <script src="../js/chart3.js"></script>
 <script src="../js/agerange.js"></script>
 <script type="text/javascript" src="../js/menutoggle.js"></script>
+<script type="text/javascript" src="../js/services.js"></script>
 
 </html>
